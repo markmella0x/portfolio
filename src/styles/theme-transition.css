@@ -1,0 +1,42 @@
+﻿.theme-toggle-icon {
+  display: grid;
+  place-items: center;
+  width: 21px;
+  height: 21px;
+}
+.theme-toggle-icon svg {
+  grid-area: 1 / 1;
+}
+.theme-icon-sun {
+  opacity: 0;
+}
+.theme-icon-moon {
+  opacity: 1;
+}
+html[data-theme='dark'] .theme-icon-sun {
+  opacity: 1;
+}
+html[data-theme='dark'] .theme-icon-moon {
+  opacity: 0;
+}
+html:has(.theme-toggle:focus-visible) .site-content *,
+html:has(.theme-toggle:focus-visible) .site-content *::before,
+html:has(.theme-toggle:focus-visible) .site-content *::after {
+  transition: none !important;
+}
+@media screen and (prefers-reduced-motion: no-preference) {
+  html[data-theme-transition='fade'],
+  html[data-theme-transition='fade'] body,
+  html[data-theme-transition='fade'] .site-content *,
+  html[data-theme-transition='fade'] .site-content *::before,
+  html[data-theme-transition='fade'] .site-content *::after {
+    transition-property:
+      background-color, color, border-color, fill, stroke, box-shadow, text-decoration-color,
+      outline-color !important;
+    transition-duration: 220ms !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  html[data-theme-transition='fade'] .theme-toggle-icon svg {
+    transition: opacity 180ms ease !important;
+  }
+}

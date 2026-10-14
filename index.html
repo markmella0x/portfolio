@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="description" content="" />
+    <meta name="theme-color" content="#f7f8fb" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title></title>
+    <script>
+      (function () {
+        var saved = null;
+        try {
+          saved = localStorage.getItem('julius-theme');
+        } catch {}
+        var theme =
+          saved === 'light' || saved === 'dark'
+            ? saved
+            : matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+        try {
+          if (
+            location.pathname === '/' &&
+            !location.hash &&
+            !matchMedia('(prefers-reduced-motion: reduce)').matches &&
+            sessionStorage.getItem('julius-intro-seen') !== '1'
+          ) {
+            document.documentElement.dataset.intro = 'playing';
+            document.documentElement.dataset.introStarted = String(performance.now());
+            function releaseIntro(moveFocus) {
+              delete document.documentElement.dataset.intro;
+              delete document.documentElement.dataset.introStarted;
+              try {
+                sessionStorage.setItem('julius-intro-seen', '1');
+              } catch {}
+              document.removeEventListener('click', skipIntro);
+              document.removeEventListener('keydown', escapeIntro);
+              if (moveFocus) {
+                document.documentElement.dataset.introFocus = 'main';
+                requestAnimationFrame(function () {
+                  document.getElementById('main-content')?.focus({ preventScroll: true });
+                });
+              }
+            }
+            function skipIntro(event) {
+              if (
+                document.documentElement.dataset.intro === 'playing' &&
+                event.target instanceof Element &&
+                event.target.closest('.startup-intro-skip')
+              ) {
+                releaseIntro(true);
+              }
+            }
+            function escapeIntro(event) {
+              if (
+                event.key === 'Escape' &&
+                document.documentElement.dataset.intro === 'playing'
+              ) {
+                releaseIntro(true);
+              }
+            }
+            document.addEventListener('click', skipIntro);
+            document.addEventListener('keydown', escapeIntro);
+            // Release the page even if application JavaScript fails to mount.
+            setTimeout(function () {
+              releaseIntro(false);
+            }, 2500);
+          }
+        } catch {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

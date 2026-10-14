@@ -1,0 +1,14 @@
+node_modules/
+dist/
+output/
+.sites-runtime/
+.playwright-cli/
+*.local
+.env*
+!.env.example
+
+# Local editorial handoffs and review evidence are not public project documentation.
+/docs/
+*.log
+.DS_Store
+Thumbs.db
