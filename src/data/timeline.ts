@@ -12,7 +12,7 @@ export const timeline: TimelineItem[] = [
   },
   {
     id: 'product-experience',
-    period: 'May 2022 - Present',
+    period: 'May 2023 - Present',
     title: 'Software Developer — Frontend & API Integration.',
     description:
       'In my current role, I build frontend interfaces for the ArenaPlus sports application and integrate REST APIs and real-time services for sports data, accounts, wallets, and customer support. I also work on responsive UI, caching, performance, and SEO.',

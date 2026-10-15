@@ -2,6 +2,54 @@ import type { Project } from '../types';
 
 export const projects: Project[] = [
   {
+    slug: 'retail-betting-application',
+    title: 'Application foundations & API integration',
+    category: 'Product engineering',
+    description:
+      'A retail frontend built from its foundations: authenticated routing, application layers, account and wallet APIs, and session lifecycle handling.',
+    skills: ['Vue 3', 'TypeScript', 'REST APIs', 'Pinia', 'Vite'],
+    contributions: [
+      'Scaffolded layouts, authenticated routing, stores, services, and composables.',
+      'Integrated account and wallet APIs; refined stale-request handling and session cleanup.',
+    ],
+    result:
+      'Connected account, wallet, and embedded views through a shared frontend foundation with explicit state and cleanup responsibilities.',
+    visual: 'retail',
+    caseStudySlug: 'retail-betting-application',
+  },
+  {
+    slug: 'frontend-performance',
+    title: 'Performance & runtime reliability',
+    category: 'Frontend performance',
+    description:
+      'Phased work on startup loading, asset delivery, caching, and the lifecycle of long-running browser and terminal interfaces.',
+    skills: ['Lighthouse', 'Image optimization', 'Caching', 'Vite', 'vite-ssg'],
+    contributions: [
+      'Deferred SDK and component work; refined image delivery, code splitting, and hydration.',
+      'Added asset build checks and refined cache, listener, and widget lifecycles.',
+    ],
+    result:
+      'Nonessential work is deferred, problematic assets are checked during builds, and runtime resources have clearer cleanup boundaries.',
+    visual: 'performance',
+    caseStudySlug: 'frontend-performance',
+  },
+  {
+    slug: 'design-token-system',
+    title: 'Shared design tokens & themes',
+    category: 'Design systems',
+    description:
+      'A shared light and dark theme foundation with semantic color tokens, theme-aware assets, and an incremental path away from legacy styling.',
+    skills: ['CSS tokens', 'Tailwind CSS', 'Vue', 'TypeScript'],
+    contributions: [
+      'Introduced role-based color tokens, shared theme state, and theme-aware components.',
+      'Migrated legacy styles incrementally, supported by color audits and written conventions.',
+    ],
+    result:
+      'Components use a shared color vocabulary across themes, with audit tooling and conventions for continued migration.',
+    visual: 'theme',
+    caseStudySlug: 'design-token-system',
+  },
+  {
     slug: 'product-storefront',
     title: 'Product storefront',
     category: 'Commerce interfaces',
@@ -26,7 +74,8 @@ export const projects: Project[] = [
       'Subcategory management, validation, publication controls, and Firestore access rules.',
       'Inventory cache updates connected to product editing.',
     ],
-    result: 'Product and category edits connect to publication controls and cache refresh.',
+    result:
+      'Editors can manage subcategories and publication state, with changes reflected in refreshed inventory caches.',
     visual: 'inventory',
   },
   {
@@ -55,7 +104,8 @@ export const projects: Project[] = [
       'Participant loading from browser storage.',
       'Rolling-name animation and selected-winner presentation.',
     ],
-    result: 'Updated participant reload handling and the selected-winner display.',
+    result:
+      'Participant data is reloaded from browser storage, and the draw interface presents the selected winner.',
     visual: 'draw',
   },
   {
@@ -69,7 +119,8 @@ export const projects: Project[] = [
       'Receipt upload and saved-draft handling.',
       'Participation availability states in a merged pull request.',
     ],
-    result: 'Updated receipt uploads, draft handling, and participation availability states.',
+    result:
+      'The entry flow handles receipt uploads and saved drafts, and reflects whether participation is available.',
     visual: 'form',
   },
   {
@@ -85,52 +136,6 @@ export const projects: Project[] = [
     ],
     result: 'Submissions can be reviewed for duplicate receipts and filtered by date.',
     visual: 'reporting',
-  },
-  {
-    slug: 'design-token-system',
-    title: 'Design tokens & dark mode',
-    category: 'Design systems',
-    description:
-      'A consistent light and dark theme system, with reusable color tokens, theme-aware components, and a migration from legacy styling to Tailwind utilities.',
-    skills: ['CSS tokens', 'Tailwind CSS', 'Vue', 'TypeScript'],
-    contributions: [
-      'Reusable color tokens and theme-aware components.',
-      'Light and dark themes with a move toward Tailwind utilities.',
-    ],
-    result: 'Shared tokens and theme-aware components support light and dark interfaces.',
-    visual: 'theme',
-    caseStudySlug: 'design-token-system',
-  },
-  {
-    slug: 'retail-betting-application',
-    title: 'Retail betting application',
-    category: 'Product engineering',
-    description:
-      'A retail frontend built from its foundations: layouts, authenticated routing, wallet journeys, embedded betting views, and careful session handling.',
-    skills: ['Vue 3', 'TypeScript', 'REST APIs', 'Pinia', 'Vite'],
-    contributions: [
-      'REST API integrations for account and wallet journeys.',
-      'Embedded betting views and session handling.',
-    ],
-    result: 'A modular frontend connects account, wallet, and embedded betting journeys.',
-    visual: 'retail',
-    caseStudySlug: 'retail-betting-application',
-  },
-  {
-    slug: 'frontend-performance',
-    title: 'Performance & reliability',
-    category: 'Frontend performance',
-    description:
-      'Performance work on image delivery, caching, SDK loading, code splitting, and hydration, followed by session and widget lifecycle refinements.',
-    skills: ['Lighthouse', 'Image optimization', 'Caching', 'Vite', 'vite-ssg'],
-    contributions: [
-      'Image delivery, caching, SDK loading, and code splitting.',
-      'Hydration, session handling, and widget lifecycle refinements.',
-    ],
-    result:
-      'Explicit loading strategies and cleanup rules support startup and session behavior.',
-    visual: 'performance',
-    caseStudySlug: 'frontend-performance',
   },
   {
     slug: 'sportsbook-platform',

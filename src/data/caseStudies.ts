@@ -3,11 +3,13 @@ import type { CaseStudy } from '../types';
 export const caseStudies: CaseStudy[] = [
   {
     slug: 'design-token-system',
-    title: 'A shared foundation for light and dark.',
+    title: 'Shared tokens for consistent light and dark themes.',
     category: 'Design systems',
     summary:
       'Turning repeated styling decisions into reusable tokens, theme-aware components, and a consistent migration path.',
     role: 'Frontend implementation, styling migration, and audit tooling',
+    outcome:
+      'A shared color vocabulary, theme-aware components, and documented conventions for continued migration.',
     skills: [
       'CSS custom properties',
       'Tailwind CSS',
@@ -41,6 +43,35 @@ export const caseStudies: CaseStudy[] = [
         ],
       },
       {
+        id: 'decisions',
+        title: 'Engineering decisions',
+        paragraphs: [],
+        points: [
+          {
+            title: 'Name colors by their role',
+            description:
+              'Role-based CSS properties let components refer to surfaces, text, and accents across themes. This keeps palette choices in a shared layer; token names and usage still need consistent conventions.',
+          },
+          {
+            title: 'Migrate the existing interface incrementally',
+            description:
+              'Moving legacy styles toward token-driven utilities provides a path through an existing application. During the transition, audit tooling helps find hardcoded colors and inconsistencies between styling approaches.',
+          },
+          {
+            title: 'Treat theme state and assets as shared concerns',
+            description:
+              'Shared state and theme-aware composables give components a consistent way to select images and styles. The shared layer also becomes a maintenance responsibility when themes or assets change.',
+          },
+        ],
+      },
+      {
+        id: 'validation',
+        title: 'Validation and maintainability',
+        paragraphs: [
+          'Color-audit tooling and whole-codebase checks supported the styling changes and helped locate affected call sites. Written conventions documented the intended token and component patterns so subsequent changes could follow the same foundation.',
+        ],
+      },
+      {
         id: 'result',
         title: 'Result',
         paragraphs: [
@@ -51,11 +82,13 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'retail-betting-application',
-    title: 'Building a retail frontend from the foundations.',
+    title: 'Building an API-connected retail application.',
     category: 'Product engineering',
     summary:
       'Application structure, authenticated journeys, and lifecycle handling for a dedicated retail terminal.',
     role: 'Application scaffolding and frontend product development',
+    outcome:
+      'Integrated account and wallet journeys within a modular frontend, with explicit session and resource cleanup.',
     skills: [
       'Vue 3',
       'TypeScript',
@@ -90,21 +123,52 @@ export const caseStudies: CaseStudy[] = [
         ],
       },
       {
+        id: 'decisions',
+        title: 'Engineering decisions',
+        paragraphs: [],
+        points: [
+          {
+            title: 'Give application layers clear responsibilities',
+            description:
+              'Layouts and routing organize journeys; stores, services, and composables separate shared state from integration logic. The structure supports reuse, while requiring explicit ownership of UI state, cached queries, and session data.',
+          },
+          {
+            title: 'Make asynchronous work respect the session',
+            description:
+              'Cancelling or ignoring stale work helps keep a response from updating a journey that has already ended. This has to be considered alongside query persistence and session cleanup, particularly in a long-running terminal interface.',
+          },
+          {
+            title: 'Include embedded views in lifecycle handling',
+            description:
+              'Wallet redirects, embedded checkout, and widgets need loading feedback and predictable navigation. Listener and subscription cleanup are part of the integration, alongside rendering the initial view.',
+          },
+        ],
+      },
+      {
+        id: 'validation',
+        title: 'Validation and maintainability',
+        paragraphs: [
+          'Type checks and browser inspection supported validation of the affected journeys. Project conventions and scoped audit guidance documented the application structure, while follow-up work made ownership of cached state, listeners, and session resources more explicit.',
+        ],
+      },
+      {
         id: 'result',
         title: 'Result',
         paragraphs: [
-          'The application gained a modular frontend foundation with shared UI and integrated account, wallet, and betting views. Subsequent changes made state ownership and cleanup more explicit across sessions and embedded content. The resulting work demonstrates both initial application setup and the ongoing engineering needed to maintain a complex product interface.',
+          'The frontend connects account, wallet, and betting views through shared layouts and application layers. Loading feedback, status updates, and checkout handling support the wallet journeys. Later lifecycle changes made stale-request handling and resource cleanup explicit across sessions and embedded views.',
         ],
       },
     ],
   },
   {
     slug: 'frontend-performance',
-    title: 'A more deliberate path to the first useful screen.',
+    title: 'Improving startup loading and runtime reliability.',
     category: 'Frontend performance',
     summary:
       'Phased loading improvements and build guardrails, followed by runtime reliability work across browser and terminal interfaces.',
     role: 'Performance remediation, resource delivery, and runtime cleanup',
+    outcome:
+      'Deferred startup work, build-time asset checks, and clearer cache and widget lifecycles.',
     skills: [
       'Lighthouse',
       'Vite',
@@ -139,10 +203,39 @@ export const caseStudies: CaseStudy[] = [
         ],
       },
       {
+        id: 'decisions',
+        title: 'Engineering decisions',
+        paragraphs: [],
+        points: [
+          {
+            title: 'Schedule work around when it is needed',
+            description:
+              'Dynamic SDK imports, idle initialization, and visible or idle hydration separate essential startup work from later work. Deferral also means accounting for when a component or integration becomes available.',
+          },
+          {
+            title: 'Catch problematic assets during the build',
+            description:
+              'Image-conversion tooling and build checks bring asset problems into the development workflow. This adds a guardrail for future exports, with tooling and rules that need to stay aligned with the asset pipeline.',
+          },
+          {
+            title: 'Review what a long-running interface retains',
+            description:
+              'Caching and persistence need clear retention and cleanup rules. The runtime work addressed repeated writes, subscriptions, widgets, and stale responses so these responsibilities were considered together.',
+          },
+        ],
+      },
+      {
+        id: 'validation',
+        title: 'Validation and maintainability',
+        paragraphs: [
+          'Lighthouse remediation was split into focused source and build changes, accompanied by type checks and browser validation. Build checks provide a repeatable asset guardrail; documented follow-ups identify work that depends on other parts of the product.',
+        ],
+      },
+      {
         id: 'result',
         title: 'Result',
         paragraphs: [
-          'The work produced explicit loading strategies, deferred component work, and asset guardrails in the build. Runtime refinements also clarified when cached data, listeners, and embedded views should be retained or released. These are concrete implementation outcomes across loading and lifecycle behavior, supported by source changes and validation records.',
+          'SDK and below-the-fold component work moved to explicit loading strategies, while asset checks became part of the build. Runtime changes addressed cache persistence, retained listeners, embedded views, and stale asynchronous work. The outcomes cover both the first load and the maintenance of an active session.',
         ],
       },
     ],

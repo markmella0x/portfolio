@@ -508,6 +508,109 @@ p,
   display: grid;
   gap: 1.75rem;
 }
+.work-scope-note {
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  line-height: 1.65;
+  max-width: 65ch;
+  margin: 1.5rem 0 2rem;
+}
+.additional-work {
+  border-block: 1px solid var(--border);
+}
+.additional-work summary {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 1.5rem;
+  min-height: 60px;
+  cursor: pointer;
+  list-style: none;
+}
+.additional-work summary::-webkit-details-marker {
+  display: none;
+}
+.additional-work summary:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.additional-work summary > span:first-child {
+  flex: 1;
+  min-width: 0;
+}
+.additional-work-title {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 550;
+  letter-spacing: -0.025em;
+}
+.additional-work-description {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 0.4rem;
+  max-width: 48ch;
+}
+.additional-work-count {
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  white-space: nowrap;
+}
+.additional-work-toggle {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+.additional-work[open] .additional-work-toggle {
+  transform: rotate(180deg);
+}
+.additional-work > .project-grid {
+  padding-block: 0.5rem 2rem;
+}
+.public-work {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.public-work > div {
+  flex: 1 1 24rem;
+  min-width: 0;
+}
+.public-work h3 {
+  font-size: 1rem;
+  font-weight: 550;
+  margin: 0 0 0.4rem;
+}
+.public-work p {
+  margin: 0;
+  max-width: 65ch;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.public-work > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+@media (max-width: 479px) {
+  .additional-work summary {
+    flex-wrap: wrap;
+    column-gap: 0.75rem;
+  }
+  .additional-work-count {
+    order: 1;
+    flex-basis: 100%;
+  }
+}
 .project-card {
   display: flex;
   flex-direction: column;
@@ -1646,6 +1749,10 @@ p,
   gap: 1.5rem 4rem;
   margin-top: 2.5rem;
 }
+.case-facts > div {
+  flex: 1 1 20rem;
+  min-width: 0;
+}
 .case-facts dt {
   font-size: 0.8rem;
   color: var(--text-muted);
@@ -1705,6 +1812,25 @@ p,
   line-height: 1.85;
   color: var(--text-muted);
   margin-bottom: 1.3rem;
+}
+.case-decisions {
+  margin: 0;
+}
+.case-decisions > div {
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--border);
+}
+.case-decisions dt {
+  font-size: 1.05rem;
+  font-weight: 550;
+  margin-bottom: 0.5rem;
+}
+.case-decisions dd {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.8;
+  max-width: 65ch;
 }
 .related-work {
   border-top: 1px solid var(--border);

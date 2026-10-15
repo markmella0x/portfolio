@@ -31,7 +31,6 @@ export const contactPage = {
     'Have a project in mind or a role to discuss? Reach me by email or LinkedIn, and tell me a little about what you’re building or the team you’re hiring for.',
   emailHeading: 'Start a conversation',
   emailDraft: {
-    subject: 'Inquiry — ' + profile.name,
     body: 'Hi ' + profile.name + ',\n\nI’d like to discuss a project or opportunity.\n\n',
   },
   audiences: [
@@ -41,10 +40,6 @@ export const contactPage = {
         'Share what you want to build or improve, your current technology stack, and any timeline or constraints. I can discuss frontend development, API integration, performance, and application planning.',
       action: 'Email about a project',
       subject: 'Project enquiry — ' + profile.name,
-      body:
-        'Hi ' +
-        profile.name +
-        ',\n\nI’d like to discuss a software development project.\n\nProject overview:\nTechnology stack:\nTimeline:\n\n',
     },
     {
       title: 'For recruiters',
@@ -52,10 +47,6 @@ export const contactPage = {
         'Share the role, team, technology stack, and job description. My background is in software engineering, with a focus on frontend and API integration, and I’m transitioning into agentic AI engineering.',
       action: 'Email about a role',
       subject: 'Recruitment enquiry — ' + profile.name,
-      body:
-        'Hi ' +
-        profile.name +
-        ',\n\nI’d like to discuss a role with our team.\n\nRole:\nCompany:\nJob description or link:\n\n',
     },
   ],
   elsewhereTitle: 'Profiles and resume',

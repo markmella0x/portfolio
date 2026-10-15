@@ -137,6 +137,7 @@ export interface CaseStudySection {
   id: string;
   title: string;
   paragraphs: string[];
+  points?: { title: string; description: string }[];
 }
 export interface CaseStudy {
   slug: string;
@@ -144,6 +145,7 @@ export interface CaseStudy {
   category: string;
   summary: string;
   role: string;
+  outcome: string;
   skills: string[];
   sections: CaseStudySection[];
 }

@@ -33,12 +33,7 @@ export function ContactPage(): JSX.Element {
             <h2 id={'contact-audience-' + index}>{audience.title}</h2>
             <p>{audience.description}</p>
             {email ? (
-              <EmailLink
-                className="text-link"
-                email={email}
-                subject={audience.subject}
-                body={audience.body}
-              >
+              <EmailLink className="text-link" email={email} subject={audience.subject}>
                 {audience.action}
               </EmailLink>
             ) : null}

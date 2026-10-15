@@ -23,6 +23,10 @@ export function CaseStudy(): JSX.Element {
             <dt>{ui.roleLabel}</dt>
             <dd>{study.role}</dd>
           </div>
+          <div>
+            <dt>{ui.outcomeLabel}</dt>
+            <dd>{study.outcome}</dd>
+          </div>
         </dl>
       </header>
       <div className="case-layout">
@@ -48,6 +52,16 @@ export function CaseStudy(): JSX.Element {
               {section.paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
+              {section.points ? (
+                <dl className="case-decisions">
+                  {section.points.map((point) => (
+                    <div key={point.title}>
+                      <dt>{point.title}</dt>
+                      <dd>{point.description}</dd>
+                    </div>
+                  ))}
+                </dl>
+              ) : null}
             </section>
           ))}
           <section id="skills-used" aria-labelledby="heading-skills">

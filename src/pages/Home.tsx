@@ -13,9 +13,9 @@ export function Home(): JSX.Element {
   return (
     <>
       <Hero />
+      <ProjectsGrid />
       <SkillsSection />
       <AiSection />
-      <ProjectsGrid />
       <Timeline />
       <About />
       <Contact />

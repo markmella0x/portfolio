@@ -3,7 +3,7 @@ import type { ResumeContent } from '../types';
 export const resume: ResumeContent = {
   phone: '9625881552',
   summary:
-    'Software engineer with 6+ years across freelance and product development, transitioning into agentic AI engineering. Plan and build web applications with full-stack knowledge, REST APIs and persistent data. Strong in frontend development, performance, caching, SEO and output validation.',
+    'Software engineer with 6+ years across freelance and product development. Plan and build web applications with full-stack knowledge, REST APIs and persistent data. Focus on frontend architecture, API integration, performance and reliability; transitioning into agentic AI engineering.',
   skills: [
     {
       label: 'Programming and frontend',
@@ -84,12 +84,12 @@ export const resume: ResumeContent = {
     {
       role: 'Software Developer — Frontend & API Integration',
       organization: 'DigiPlus Interactive Corp',
-      period: 'May 2022 - Present',
+      period: 'May 2023 - Present',
       bullets: [
         'Integrate REST APIs and real-time services for ArenaPlus sportsbook features, including sports data, accounts, deposits, withdrawals, and customer support.',
         'Develop and maintain sportsbook and SEO-focused web applications using Vue 3, TypeScript, Vite, and Tailwind CSS.',
-        'Build responsive user interfaces, reusable components, shared layouts, design tokens, and light and dark themes for web and mobile.',
-        'Optimize application loading through caching, image and font delivery, lazy loading, and code splitting.',
+        'Build reusable components, shared layouts, and design tokens for consistent responsive interfaces across web, mobile, and light and dark themes.',
+        'Optimize startup loading through caching, image and font delivery, lazy loading, and code splitting.',
         'Support Vue 2-to-Vue 3 migrations and collaborate with product managers, designers, and backend engineers.',
       ],
     },
@@ -113,21 +113,21 @@ export const resume: ResumeContent = {
   },
   projects: [
     {
-      title: 'Frontend Performance, Themes and Retail Interfaces',
+      title: 'Application Foundations, API Integration and Reliability',
       description:
-        'Integrated REST APIs for account and wallet journeys. Built shared themes and authenticated layouts; optimized image delivery, SDK loading and caching.',
+        'Scaffolded authenticated routing, layouts, stores and services; integrated account and wallet APIs. Built shared themes, deferred SDK loading, and refined caching, stale-request handling and session cleanup.',
       skills: ['Vue 3', 'TypeScript', 'REST APIs', 'Pinia', 'Vite'],
     },
     {
       title: 'Product Storefront and Inventory Management',
       description:
-        'Contributed image loading, description fallbacks and version-aware caching. Added subcategory management, Firestore access rules, publication controls and cache refresh.',
+        'Contributed image loading, description fallbacks and version-aware caching that retains data on refresh failure. Added subcategory management, Firestore access rules, publication controls and inventory cache refresh.',
       skills: ['React', 'Next.js', 'TypeScript', 'Firebase', 'IndexedDB'],
     },
     {
       title: 'Catalog Editing Workspace',
       description:
-        'Contributed multi-catalog management, saved design settings and database-backed item ordering with optimistic updates and rollback.',
+        'Contributed multi-catalog management and saved design settings. Persisted item ordering in Firestore with optimistic updates and rollback when writes fail.',
       skills: ['React', 'Next.js', 'TypeScript', 'Zustand', 'Zod', 'Firestore'],
     },
     {
@@ -141,8 +141,8 @@ export const resume: ResumeContent = {
     'My foundations began with self-study in college in 2018. I started learning AI in early March 2025 and am now transitioning into agentic AI engineering.',
   aiPractices: [
     'Use Codex and ChatGPT for research, and Cursor and Claude Code for code audits, debugging, and incremental refactoring.',
-    'Structure prompts with context, constraints, and reviewable tasks; validate output through code review, type checks, builds, and browser inspection.',
-    'Apply knowledge of automation to task planning while reviewing and validating AI-generated code.',
+    'Define scope, context, constraints and acceptance criteria; break AI-assisted changes into reviewable phases.',
+    'Review generated changes and affected call sites; validate behavior through code review, type checks, builds and browser inspection.',
   ],
   additionalExperience: [
     {

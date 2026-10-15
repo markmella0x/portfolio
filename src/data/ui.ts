@@ -23,7 +23,18 @@ export const ui = {
   dark: 'Dark',
   workTitle: 'Selected engineering work',
   workDescription:
-    'My contributions, technology choices, and implementation results across commerce, administration, reporting, and product engineering.',
+    'Application foundations, API integration, and reliability: three case studies covering my scope, engineering decisions, and the resulting behavior.',
+  additionalWorkTitle: 'More engineering contributions',
+  additionalWorkDescription:
+    'Explore further work in commerce, data editing, payments, and reporting.',
+  projectCountLabel: 'projects',
+  workScopeNote:
+    'Project titles are generic to protect client confidentiality. Each description identifies my own contributions.',
+  publicWorkTitle: 'A public engineering sample',
+  publicWorkDescription:
+    'Explore this portfolio’s React and TypeScript source, including static page generation, SEO checks, and PDF resume generation.',
+  publicWorkLink: 'View portfolio source',
+  publicWorkUrl: 'https://github.com/markmella0x/portfolio',
   caseStudyLink: 'Read case study',
   skillsLabel: 'Skills used',
   contributionLabel: 'My contribution',
@@ -39,13 +50,14 @@ export const ui = {
   timelineCurrentLabel: 'Current direction',
   timelineLink: 'Explore my career journey',
   workflowToolsLabel: 'Agentic AI tools and practices',
-  contactTitle: 'Let’s talk about your team.',
+  contactTitle: 'Let’s talk about your business or next project.',
   contactDescription:
-    'I bring 6+ years of software experience and full-stack knowledge, and I’m transitioning into agentic AI engineering. I can help turn requirements into a working application, with careful API integration, performance, and validation.',
+    'Have a business idea, a project to build, or an application to improve? I can help plan the work, build responsive interfaces, connect APIs, and deliver software that supports your business needs.',
   needsInput: '[NEEDS INPUT]',
   backToWork: 'All selected work',
   backHome: 'Back to home',
   roleLabel: 'My role',
+  outcomeLabel: 'Outcome',
   caseContentsLabel: 'In this case study',
   relatedWorkTitle: 'More selected work',
   loadingLabel: 'Loading page…',
