@@ -40,6 +40,7 @@ export interface Profile {
   focus: string[];
   about: string[];
   contact: {
+    website: string;
     email: string | null;
     github: string | null;
     linkedin: string | null;

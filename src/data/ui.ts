@@ -66,6 +66,7 @@ export const ui = {
   notFoundDescription:
     'This page could not be found. Explore the selected work from the home page.',
   emailLabel: 'Email',
+  websiteLabel: 'Portfolio',
   gmailNewTab: 'opens Gmail in a new tab',
   githubLabel: 'GitHub',
   linkedinLabel: 'LinkedIn',

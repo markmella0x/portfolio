@@ -1,6 +1,6 @@
 # Search setup and launch
 
-The portfolio has seven prerendered content pages plus a noindex error page. Search engines receive the page content and metadata in HTML without needing JavaScript. The public website address and hosting provider have not been supplied yet; Google cannot discover a local preview as a public portfolio.
+The confirmed public website is [https://markjulius.vercel.app/](https://markjulius.vercel.app/), hosted on Vercel. The portfolio has seven prerendered content pages plus a noindex error page. Search engines receive the page content and metadata in HTML without needing JavaScript. Production builds use this address for canonical links, structured data, social images, robots and the sitemap. Local and Vercel review builds remain noindex. Configuration changes affect the live site only after a reviewed production deployment.
 
 ## Identity and page information
 
@@ -23,20 +23,20 @@ Structured data uses supplied facts. There is no supplied portrait, so the text-
 
 ## Set the real public address
 
-1. Choose the final HTTPS domain or hosting address. Use the domain root, with no repository subpath, query or fragment. Decide whether the canonical hostname includes `www` and redirect the other version to it.
-2. Copy `.env.example` to `.env.production.local`, or add the same variables in the hosting service's production build settings.
-3. Set `VITE_SITE_URL` to that actual address. This single setting populates canonical links, social image URLs, structured-data identifiers, `sitemap.xml`, and the sitemap entry in `robots.txt`.
+1. The canonical address is `https://markjulius.vercel.app/`, stored in `profile.contact.website`. `npm run build:public` defaults to that confirmed address. The résumé includes the same public portfolio link.
+2. An explicit `VITE_SITE_URL` can override the public-build address. Use a real root HTTPS address with no repository subpath, query or fragment. `.env.example` documents the supplied Vercel address and optional verification setting. Keep any actual environment files local or configure them on the host.
+3. The build passes the same URL to Vite and static rendering. This populates canonical links, social image URLs, structured-data identifiers, `sitemap.xml`, and the sitemap entry in `robots.txt`.
 4. If verifying Search Console with an HTML tag, set `VITE_GOOGLE_SITE_VERIFICATION` to only the token inside the tag's `content` attribute. Leave it empty for DNS verification. Do not put the full tag in this field. Verification tokens are public; these variables must never contain passwords or API keys.
-5. Run `npm run test:seo`, then `npm run build:public`. The public build stops if the URL is missing, local, a reserved example address, or an unsupported subpath. It also validates the generated SEO output before it can be used as a reviewed release artifact.
-6. Review `dist/` and the website before publishing. Deploy that reviewed output using the selected host. Publishing is a separate step from building or pushing a repository.
+5. Run `npm run test:seo`, then `npm run build:public`. The public build rejects empty explicit settings, local addresses, reserved example addresses, and unsupported subpaths. It validates the generated SEO output before it can be used as a reviewed release artifact. Use `npm run seo:check -- --public` to recheck that artifact.
+6. Review `dist/` and the website before publishing. `vercel.json` selects `npm run build:vercel`, which enables public indexing only when `VERCEL_ENV=production`; preview and development builds explicitly clear the public SEO origin. Vercel previews therefore stay noindex even if the host has a production `VITE_SITE_URL` value. Keep Vercel's automatically exposed system environment variables enabled so the build receives `VERCEL_ENV`; an absent value keeps the build noindex. The output directory is `dist`. Review and fresh push approval are required before publishing changes.
 
-Use `npm run build` for local review. Without `VITE_SITE_URL`, pages are `noindex`, canonical links are omitted, and no sitemap is generated. Robots allow crawling so a crawler can read the noindex instruction. Keep public URL settings unset on any publicly reachable staging deployment that should stay out of search. After changing environment values, rebuild; they are embedded at build time. This follows [Vite's environment configuration](https://vite.dev/guide/env-and-mode).
+Use `npm run build` for local review. Without `VITE_SITE_URL`, pages are `noindex`, canonical links are omitted, and no sitemap is generated. Robots allow crawling so a crawler can read the noindex instruction. After changing environment values, rebuild; they are embedded at build time. Vercel's production/preview distinction uses its documented [system environment variables](https://vercel.com/docs/environment-variables/system-environment-variables). Vite's [environment configuration](https://vite.dev/guide/env-and-mode) describes how build-time values are embedded.
 
 ## Hosting requirements
 
-Publish the complete `dist` directory. The build command is `npm run build:public`; the output directory is `dist`. No server-side application or contact backend is needed.
+Publish the complete `dist` directory. Vercel uses `npm run build:vercel` from `vercel.json`; standalone public builds use `npm run build:public`. No server-side application or contact backend is needed.
 
-The hosting service must implement these behaviors. The local preview already demonstrates them; hosting configuration will depend on the chosen provider.
+The local preview implements the route behavior below. `vercel.json` adds permanent redirects for known URL variants and an HTTP canonical header for the PDF; Vercel serves the generated HTML and custom `404.html` as static files. These host-specific rules must be checked on the live site after deployment. The configuration follows Vercel's [static configuration reference](https://vercel.com/docs/project-configuration/vercel-json).
 
 | Request                                                                        | Expected response                                                        |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
@@ -54,12 +54,12 @@ After deployment, verify the responses above on the actual hostname and check th
 
 ## Connect Google Search Console
 
-1. Add the website in [Google Search Console](https://search.google.com/search-console/). For a domain you control, use a Domain property and the DNS verification record Google supplies. For a hosting subdomain, use a URL-prefix property matching the final HTTPS address and an available verification method.
+1. Add a URL-prefix property for `https://markjulius.vercel.app/` in [Google Search Console](https://search.google.com/search-console/). This is a hosting subdomain; use an available URL-prefix verification method rather than attempting DNS verification for the Vercel-owned parent domain.
 2. For HTML-tag verification, add Google's actual token through `VITE_GOOGLE_SITE_VERIFICATION`, rebuild, review, and deploy. Confirm the token appears in the live homepage source before clicking **Verify**. Retain the token afterward. DNS verification does not require the HTML token. Follow Google's [ownership verification instructions](https://support.google.com/webmasters/answer/9008080).
-3. Submit the production `/sitemap.xml` in the Sitemaps report. Its seven URLs must match the final canonical hostname. A sitemap supports discovery; it does not guarantee indexing or ranking. See Google's [sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap).
+3. After deployment, submit `https://markjulius.vercel.app/sitemap.xml` in the Sitemaps report. Its seven URLs must match the confirmed canonical hostname. A sitemap supports discovery; it does not guarantee indexing or ranking. See Google's [sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap).
 4. Inspect the live home, About, Contact, résumé and project URLs. Run the live URL test, resolve any crawl/indexing errors, and request indexing for the important pages. Check ProfilePage/Breadcrumb markup with the [Rich Results Test](https://search.google.com/test/rich-results) and WebSite markup with the [Schema Markup Validator](https://validator.schema.org/).
-5. Once the final address is live, add that address to the résumé and the website fields of the existing professional profiles. Regenerate the two-page résumé PDF after adding the real link. The current PDF has no invented portfolio address.
-6. Monitor Page indexing and Performance reports for searches using **Mark Julius** and **Mark Julius P. Mella**, including impressions, clicks and the landing pages. Use the [Search Console getting-started guide](https://developers.google.com/search/docs/monitor-debug/search-console-start). Public hosting, Google ownership verification, sitemap submission and indexing remain launch steps; they have not been performed locally.
+5. The résumé now links to the supplied public address; regenerate the two-page PDF whenever that link changes. The website fields of existing professional profiles can use the same address. Profile updates are separate actions requiring the user's authorization.
+6. Monitor Page indexing and Performance reports for searches using **Mark Julius** and **Mark Julius P. Mella**, including impressions, clicks and the landing pages. Use the [Search Console getting-started guide](https://developers.google.com/search/docs/monitor-debug/search-console-start). Google ownership verification, sitemap submission and indexing have not been performed by the local build. No Search Console verification token was supplied, so none is fabricated.
 
 ## Repeatable checks
 

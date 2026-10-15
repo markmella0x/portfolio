@@ -88,7 +88,7 @@ export const resume: ResumeContent = {
       bullets: [
         'Integrate REST APIs and real-time services for ArenaPlus sportsbook features, including sports data, accounts, deposits, withdrawals, and customer support.',
         'Develop and maintain sportsbook and SEO-focused web applications using Vue 3, TypeScript, Vite, and Tailwind CSS.',
-        'Build reusable components, shared layouts, and design tokens for consistent responsive interfaces across web, mobile, and light and dark themes.',
+        'Build shared layouts, reusable components and design tokens for responsive light and dark interfaces.',
         'Optimize startup loading through caching, image and font delivery, lazy loading, and code splitting.',
         'Support Vue 2-to-Vue 3 migrations and collaborate with product managers, designers, and backend engineers.',
       ],

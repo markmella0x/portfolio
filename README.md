@@ -4,6 +4,8 @@ Personal portfolio and resume for **Mark Julius P. Mella**, a software engineer 
 
 Built with React 18, TypeScript, Vite, Tailwind CSS 4, and React Router 7. The build produces static HTML for the home, About, Contact, resume, three case studies, and error pages.
 
+Public website: [markjulius.vercel.app](https://markjulius.vercel.app/).
+
 ## Features
 
 - Twelve project summaries with personal contributions, technology stacks, and results; three detailed case studies.
@@ -43,7 +45,8 @@ Open [http://127.0.0.1:4173/](http://127.0.0.1:4173/). On Windows PowerShell, us
 | ---------------------- | ----------------------------------------------------- |
 | `npm run dev`          | Start the local development server                    |
 | `npm run build`        | Check TypeScript, bundle, and prerender static pages  |
-| `npm run build:public` | Require the real public URL, build, and validate SEO  |
+| `npm run build:public` | Build and validate SEO for the confirmed public URL   |
+| `npm run build:vercel` | Build public production or a noindex Vercel preview   |
 | `npm run preview`      | Serve the production build with redirects and 404s    |
 | `npm run lint`         | Check ESLint rules with zero warnings allowed         |
 | `npm run seo:check`    | Validate the built pages, metadata, links and assets  |
@@ -91,7 +94,9 @@ The export checks that content fits two A4 pages before writing `public/resume/M
 
 ## Website hosting
 
-Publishing this repository does not deploy the website. Copy `.env.example` to `.env.production.local`, set `VITE_SITE_URL` to the real HTTPS website address, and run `npm run build:public`. The same setting controls prerendered and client-side metadata, canonical links, structured-data URLs, social images, robots, and the sitemap. Without it, review builds use `noindex`, omit canonical links, and do not generate a public sitemap. The public-build command rejects missing or invalid launch settings.
+The confirmed public address is `https://markjulius.vercel.app/`, stored in `profile.contact.website` and included in the résumé. `npm run build:public` uses it by default; an explicit `VITE_SITE_URL` can override it. The same build setting controls prerendered and client-side metadata, canonical links, structured-data URLs, social images, robots, and the seven-page sitemap. Invalid public settings stop the build. Ordinary local builds remain noindex unless a public URL is configured in their environment. Use `npm run seo:check -- --public` to recheck a public build, or `npm run seo:check` for an unconfigured preview build.
+
+`vercel.json` selects `npm run build:vercel` and the `dist` output directory. Production deployments use the confirmed public address. Preview and development deployments explicitly clear the public SEO origin, even if a production URL was configured on the host; they remain noindex without public canonicals or a sitemap. The configuration also normalizes known URL variants and provides an HTTP canonical header for the PDF pointing to the HTML résumé. Existing generated routes and the custom HTTP 404 page use Vercel's static file serving. No catch-all rewrite to the home page is added. Repository changes must be reviewed before any push or deployment; the hosting configuration takes effect only after deployment.
 
 `VITE_GOOGLE_SITE_VERIFICATION` optionally adds the actual Search Console HTML verification token. Leave it empty when using DNS verification. Both environment values are public website configuration; never place credentials in `VITE_` variables. See [SEO.md](SEO.md) for the complete launch and Google Search Console setup.
 

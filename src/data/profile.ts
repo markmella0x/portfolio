@@ -50,6 +50,7 @@ export const profile: Profile = {
     'I’m transitioning into agentic AI engineering, building on my software engineering experience. I use Codex and ChatGPT for research, guide coding agents with clear scope and constraints, and review the result through code checks and browser validation. Product behavior and maintainability guide the decisions throughout.',
   ],
   contact: {
+    website: 'https://markjulius.vercel.app/',
     email: 'markmella.dev@gmail.com',
     github: 'https://github.com/mark-dev0x',
     linkedin: 'https://www.linkedin.com/in/markzxc24',

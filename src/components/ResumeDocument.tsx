@@ -40,6 +40,12 @@ export function ResumeDocument(): JSX.Element {
             <h1 id="resume-name">{profile.fullName}</h1>
             <p className="resume-role">{profile.title}</p>
             <ul className="resume-contacts">
+              <li>
+                <a href={profile.contact.website}>
+                  {ui.websiteLabel}:{' '}
+                  {profile.contact.website.replace(/^https:\/\//, '').replace(/\/$/, '')}
+                </a>
+              </li>
               {profile.contact.email ? (
                 <li>
                   <a href={'mailto:' + profile.contact.email}>
