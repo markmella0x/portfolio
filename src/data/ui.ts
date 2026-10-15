@@ -1,5 +1,5 @@
 export const ui = {
-  brandLabel: 'Mark Julius / Agentic AI Engineering',
+  brandLabel: 'Mark Julius / Software and Agentic AI Engineering',
   homeLabel: 'Mark Julius, home',
   skipLink: 'Skip to content',
   nav: [
@@ -31,13 +31,13 @@ export const ui = {
   aboutTitle: 'The engineer behind the work',
   timelineTitle: 'Career and direction',
   timelineIntroduction:
-    '6+ years across freelance and product development, building on software foundations and now applying agentic AI workflows.',
+    '6+ years across freelance and product development, building on software foundations and now transitioning into agentic AI engineering.',
   timelineCurrentLabel: 'Current direction',
   timelineLink: 'Explore my career journey',
   workflowToolsLabel: 'Agentic AI tools and practices',
   contactTitle: 'Let’s talk about your team.',
   contactDescription:
-    'I bring 6+ years of software experience, full-stack knowledge, and agentic AI workflows. I can help turn requirements into a working application, with careful integration, performance, and validation.',
+    'I bring 6+ years of software experience and full-stack knowledge, and I’m transitioning into agentic AI engineering. I can help turn requirements into a working application, with careful API integration, performance, and validation.',
   needsInput: '[NEEDS INPUT]',
   backToWork: 'All selected work',
   backHome: 'Back to home',

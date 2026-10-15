@@ -1,6 +1,6 @@
 import type { PageMetadata, Profile } from '../types';
 
-const engineerTitle = 'Agentic AI Engineer';
+const engineerTitle = 'Software Engineer | Agentic AI Engineer';
 
 export const profile: Profile = {
   name: 'Mark Julius',
@@ -9,7 +9,7 @@ export const profile: Profile = {
   title: engineerTitle,
   headline: ['Engineering reliable software.'],
   summary:
-    'I bring 6+ years of freelance and product development experience. I can take a web application from requirements and planning through interfaces, API integration, persistent data, and validation. My work combines full-stack knowledge with strong frontend development, performance, SEO, and agentic AI workflows.',
+    'I’m a software engineer with 6+ years across freelance and product development, transitioning into agentic AI engineering. I plan and build web applications with strong frontend development and full-stack knowledge, connecting interfaces, REST APIs, and persistent data. Performance, SEO, and careful validation guide my work.',
   strengths: [
     {
       title: 'Planning and application structure',
@@ -47,7 +47,7 @@ export const profile: Profile = {
     'My software engineering foundation began with self-study while I was in college in 2018. I now bring 6+ years of experience across freelance work and product development, with the full-stack knowledge to plan and build complete web applications.',
     'I start with the required result: user journeys, application structure, API integration, and how data is validated and saved. My work includes modular application foundations, authenticated interfaces, Firestore-backed editing, access-rule changes, and optimistic updates with rollback.',
     'API integration is a main part of my current frontend role, connecting sports, accounts, wallets, and customer support to backend services. I also work on shared UI, embedded apps, design tokens, and themes. Caching, image delivery, loading strategies, and SEO help keep large applications usable.',
-    'I moved into agentic AI engineering to make the most of the AI era. I use Codex and ChatGPT for research, guide coding agents with clear scope and constraints, and review the result through code checks and browser validation. Product behavior and maintainability guide the decisions throughout.',
+    'I’m transitioning into agentic AI engineering, building on my software engineering experience. I use Codex and ChatGPT for research, guide coding agents with clear scope and constraints, and review the result through code checks and browser validation. Product behavior and maintainability guide the decisions throughout.',
   ],
   contact: {
     email: 'markmella.dev@gmail.com',
@@ -60,5 +60,5 @@ export const profile: Profile = {
 export const homeMetadata: PageMetadata = {
   title: profile.fullName + ' | ' + profile.role,
   description:
-    'Agentic AI Engineer with 6+ years of software experience, full-stack development knowledge, REST API integration, performance, SEO, and application planning.',
+    'Software engineer with 6+ years of experience, transitioning into agentic AI engineering. Full-stack development, REST API integration, performance, and SEO.',
 };

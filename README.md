@@ -1,6 +1,6 @@
 # Mark Julius - Portfolio
 
-Personal portfolio and resume for **Mark Julius P. Mella**, an Agentic AI Engineer with 6+ years across freelance and product development. The site presents software engineering experience, frontend development, API integration, performance, SEO, and agentic AI workflows.
+Personal portfolio and resume for **Mark Julius P. Mella**, a software engineer with 6+ years across freelance and product development, transitioning into agentic AI engineering. The headline is **Software Engineer | Agentic AI Engineer**. The site presents frontend development, API integration, performance, SEO, and agentic AI workflows.
 
 Built with React 18, TypeScript, Vite, Tailwind CSS 4, and React Router 7. The build produces static HTML for the home page, resume, three case studies, and an error page.
 

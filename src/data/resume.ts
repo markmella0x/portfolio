@@ -3,7 +3,7 @@ import type { ResumeContent } from '../types';
 export const resume: ResumeContent = {
   phone: '9625881552',
   summary:
-    'Agentic AI Engineer with 6+ years across freelance and product development. Can plan and build full-stack web applications, connecting interfaces, REST APIs and persistent data. Strong in frontend engineering, performance, caching, search engine optimization (SEO) and output validation.',
+    'Software engineer with 6+ years across freelance and product development, transitioning into agentic AI engineering. Plan and build web applications with full-stack knowledge, REST APIs and persistent data. Strong in frontend development, performance, caching, SEO and output validation.',
   skills: [
     {
       label: 'Programming and frontend',
@@ -138,7 +138,7 @@ export const resume: ResumeContent = {
     },
   ],
   aiIntroduction:
-    'My foundations began with self-study while I was in college in 2018. I started learning AI in early March 2025 and moved into agentic AI engineering to make the most of the AI era.',
+    'My foundations began with self-study in college in 2018. I started learning AI in early March 2025 and am now transitioning into agentic AI engineering.',
   aiPractices: [
     'Use Codex and ChatGPT for research, and Cursor and Claude Code for code audits, debugging, and incremental refactoring.',
     'Structure prompts with context, constraints, and reviewable tasks; validate output through code review, type checks, builds, and browser inspection.',

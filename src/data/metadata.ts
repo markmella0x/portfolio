@@ -12,7 +12,7 @@ export const resumeMetadata: PageMetadata = {
   description:
     'Resume for ' +
     profile.fullName +
-    ': Agentic AI Engineer with 6+ years of software experience, full-stack development knowledge, REST API integration, performance, and SEO.',
+    ': Software engineer with 6+ years of experience, transitioning into agentic AI engineering. Frontend development, REST APIs, performance, and SEO.',
 };
 export function getCaseStudyMetadata(study: CaseStudy): PageMetadata {
   const project = projects.find((entry) => entry.caseStudySlug === study.slug);

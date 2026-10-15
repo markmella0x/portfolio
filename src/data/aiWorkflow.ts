@@ -3,7 +3,7 @@ import type { AiWorkflow } from '../types';
 export const aiWorkflow: AiWorkflow = {
   title: 'How I guide coding agents',
   introduction:
-    'I started learning AI in early March 2025. I use Codex and ChatGPT for research, and coding agents for scoped audits, phased refactoring, performance work, and debugging. Clear constraints and human review keep the work focused and verifiable.',
+    'I’m transitioning into agentic AI engineering, building on AI learning that began in early March 2025. I use Codex and ChatGPT for research, and coding agents for scoped audits, phased refactoring, performance work, and debugging. Clear constraints and human review keep the work focused and verifiable.',
   steps: [
     {
       title: 'Understand first',

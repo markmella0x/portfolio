@@ -35,9 +35,9 @@ export const timeline: TimelineItem[] = [
   {
     id: 'ai-engineering-direction',
     period: 'Now',
-    title: 'Full-stack delivery and agentic AI.',
+    title: 'Transitioning into agentic AI engineering.',
     description:
-      'Bringing 6+ years of software experience and full-stack knowledge to application planning, implementation, and validation, with coding agents supporting the work.',
+      'Bringing 6+ years of software experience and full-stack knowledge to my transition into agentic AI engineering, applying structured prompts, coding agents, and human review to application work.',
     skills: ['Full-stack development', 'Application planning', 'Agentic AI workflows'],
     link: { label: 'Get in touch', href: '#contact' },
     current: true,
