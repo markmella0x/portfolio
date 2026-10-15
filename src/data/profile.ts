@@ -53,7 +53,7 @@ export const profile: Profile = {
     website: 'https://markjulius.vercel.app/',
     email: 'markmella.dev@gmail.com',
     github: 'https://github.com/mark-dev0x',
-    linkedin: 'https://www.linkedin.com/in/markzxc24',
+    linkedin: 'https://www.linkedin.com/in/markjulius0x/',
     resume: '/resume/Mark-Julius-Mella-Resume.pdf',
   },
 };
