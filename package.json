@@ -6,8 +6,11 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5173 --strictPort",
     "build": "tsc --noEmit && vite build && node --import tsx scripts/prerender.tsx",
+    "build:public": "node --import tsx scripts/check-site-config.ts && npm run build && npm run seo:check -- --public",
     "preview": "vite preview --host 127.0.0.1 --port 4173 --strictPort",
     "lint": "eslint . --max-warnings 0",
+    "seo:check": "node --import tsx scripts/check-seo.ts",
+    "test:seo": "node --import tsx --test scripts/seo.test.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

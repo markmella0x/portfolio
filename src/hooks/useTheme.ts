@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 import type { Theme } from '../types';
 
 const storageKey = 'julius-theme';
@@ -28,10 +29,13 @@ function applyTheme(theme: Theme): void {
 export function useTheme(): { theme: Theme; toggleTheme: (animate?: boolean) => void } {
   const [theme, setTheme] = useState<Theme>(readInitialTheme);
   const requestedTheme = useRef(theme);
-  const fadeTimer = useRef<number | undefined>(undefined);
+  const transition = useRef<ViewTransition | null>(null);
+  const revision = useRef(0);
 
   const clearEffect = useCallback((): void => {
-    window.clearTimeout(fadeTimer.current);
+    revision.current += 1;
+    transition.current?.skipTransition();
+    transition.current = null;
     delete document.documentElement.dataset.themeTransition;
   }, []);
 
@@ -58,21 +62,27 @@ export function useTheme(): { theme: Theme; toggleTheme: (animate?: boolean) => 
     function syncMotion(): void {
       if (motion.matches) stopMotion();
     }
+    function syncVisibility(): void {
+      if (document.hidden) stopMotion();
+    }
     media.addEventListener('change', syncSystem);
     motion.addEventListener('change', syncMotion);
     window.addEventListener('storage', syncStorage);
     window.addEventListener('beforeprint', stopMotion);
+    document.addEventListener('visibilitychange', syncVisibility);
     return () => {
       clearEffect();
       media.removeEventListener('change', syncSystem);
       motion.removeEventListener('change', syncMotion);
       window.removeEventListener('storage', syncStorage);
       window.removeEventListener('beforeprint', stopMotion);
+      document.removeEventListener('visibilitychange', syncVisibility);
     };
   }, [clearEffect]);
 
   function toggleTheme(animate = true): void {
     const next = requestedTheme.current === 'light' ? 'dark' : 'light';
+    const interrupted = transition.current !== null;
     requestedTheme.current = next;
     clearEffect();
     try {
@@ -80,16 +90,43 @@ export function useTheme(): { theme: Theme; toggleTheme: (animate?: boolean) => 
     } catch {
       /* Preferences still work in memory. */
     }
-    if (
-      animate &&
-      !matchMedia('(prefers-reduced-motion: reduce)').matches &&
-      !document.hidden
-    ) {
-      document.documentElement.dataset.themeTransition = 'fade';
-      fadeTimer.current = window.setTimeout(clearEffect, 240);
+    function commitTheme(): void {
+      applyTheme(next);
+      setTheme(next);
     }
-    applyTheme(next);
-    setTheme(next);
+    if (
+      !animate ||
+      interrupted ||
+      matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      document.hidden ||
+      typeof document.startViewTransition !== 'function'
+    ) {
+      commitTheme();
+      return;
+    }
+
+    const currentRevision = revision.current;
+    document.documentElement.dataset.themeTransition = 'crossfade';
+    try {
+      const active = document.startViewTransition(() => {
+        // A skipped transition still invokes its callback. Never restore an older choice.
+        if (revision.current !== currentRevision) return;
+        // Capture the updated palette, icon and accessible label together.
+        flushSync(commitTheme);
+      });
+      transition.current = active;
+      function finish(): void {
+        if (transition.current !== active) return;
+        transition.current = null;
+        delete document.documentElement.dataset.themeTransition;
+      }
+      // Cancellation rejects ready even though the theme update can still succeed.
+      void active.ready.catch(() => {});
+      void active.finished.then(finish, finish);
+    } catch {
+      clearEffect();
+      commitTheme();
+    }
   }
 
   return { theme, toggleTheme };

@@ -64,6 +64,8 @@ export interface PageMetadata {
   description: string;
   noIndex?: boolean;
   caseStudy?: Pick<CaseStudy, 'title' | 'skills'>;
+  pageType?: 'AboutPage' | 'ContactPage';
+  breadcrumb?: string;
 }
 export interface SeoMetaTag {
   attribute: 'name' | 'property';

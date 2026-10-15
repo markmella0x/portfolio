@@ -44,7 +44,13 @@ export function Header(): JSX.Element {
               key={item.href}
               to={item.href}
               aria-current={
-                location.pathname + location.hash === item.href ? 'location' : undefined
+                item.href.includes('#')
+                  ? location.pathname + location.hash === item.href
+                    ? 'location'
+                    : undefined
+                  : location.pathname.replace(/\/+$/, '') === item.href.replace(/\/+$/, '')
+                    ? 'page'
+                    : undefined
               }
             >
               {item.label}

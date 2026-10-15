@@ -15,7 +15,7 @@ export const timeline: TimelineItem[] = [
     period: 'May 2022 - Present',
     title: 'Software Developer — Frontend & API Integration.',
     description:
-      'In my current software development role, I focus on frontend engineering and integrate REST APIs and real-time services for sports, accounts, wallets, and customer support, alongside responsive UI, caching, performance, and SEO.',
+      'In my current role, I build frontend interfaces for the ArenaPlus sports application and integrate REST APIs and real-time services for sports data, accounts, wallets, and customer support. I also work on responsive UI, caching, performance, and SEO.',
     skills: ['REST APIs', 'Frontend development', 'Performance', 'Caching', 'SEO'],
     link: {
       label: 'Read performance case study',
@@ -39,7 +39,7 @@ export const timeline: TimelineItem[] = [
     description:
       'Bringing 6+ years of software experience and full-stack knowledge to my transition into agentic AI engineering, applying structured prompts, coding agents, and human review to application work.',
     skills: ['Full-stack development', 'Application planning', 'Agentic AI workflows'],
-    link: { label: 'Get in touch', href: '#contact' },
+    link: { label: 'Get in touch', href: '/contact/' },
     current: true,
   },
 ];

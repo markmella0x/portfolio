@@ -9,7 +9,7 @@ export const profile: Profile = {
   title: engineerTitle,
   headline: ['Engineering reliable software.'],
   summary:
-    'I’m a software engineer with 6+ years across freelance and product development, transitioning into agentic AI engineering. I plan and build web applications with strong frontend development and full-stack knowledge, connecting interfaces, REST APIs, and persistent data. Performance, SEO, and careful validation guide my work.',
+    'I’m Mark Julius P. Mella, a software engineer with 6+ years across freelance and product development, transitioning into agentic AI engineering. I plan and build web applications with strong frontend development and full-stack knowledge, connecting interfaces, REST APIs, and persistent data. Performance, SEO, and careful validation guide my work.',
   strengths: [
     {
       title: 'Planning and application structure',
@@ -60,5 +60,5 @@ export const profile: Profile = {
 export const homeMetadata: PageMetadata = {
   title: profile.fullName + ' | ' + profile.role,
   description:
-    'Software engineer with 6+ years of experience, transitioning into agentic AI engineering. Full-stack development, REST API integration, performance, and SEO.',
+    'Mark Julius P. Mella: software engineer with 6+ years in frontend development, REST API integration and performance, transitioning into agentic AI engineering.',
 };

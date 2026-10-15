@@ -24,15 +24,28 @@ async function loadResume(): Promise<{
 
 const LazyResume = lazy(loadResume);
 
+const LazyAbout = lazy(async () => ({
+  default: (await import('./pages/About')).AboutPage,
+}));
+const LazyContact = lazy(async () => ({
+  default: (await import('./pages/Contact')).ContactPage,
+}));
+
 export function App({
   initialCaseStudy,
   initialResume,
+  initialAbout,
+  initialContact,
 }: {
   initialCaseStudy?: typeof import('./pages/CaseStudy').CaseStudy;
   initialResume?: typeof import('./pages/Resume').Resume;
+  initialAbout?: typeof import('./pages/About').AboutPage;
+  initialContact?: typeof import('./pages/Contact').ContactPage;
 }): JSX.Element {
   const CaseStudyRoute = initialCaseStudy ?? LazyCaseStudy;
   const ResumeRoute = initialResume ?? LazyResume;
+  const AboutRoute = initialAbout ?? LazyAbout;
+  const ContactRoute = initialContact ?? LazyContact;
   return (
     <BrowserRouter>
       <StartupIntro />
@@ -48,6 +61,8 @@ export function App({
             <Route path="/" element={<Home />} />
             <Route path="/projects/:slug" element={<CaseStudyRoute />} />
             <Route path="/resume" element={<ResumeRoute />} />
+            <Route path="/about" element={<AboutRoute />} />
+            <Route path="/contact" element={<ContactRoute />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

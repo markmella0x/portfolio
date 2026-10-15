@@ -7,6 +7,8 @@ import { caseStudies } from './src/data/caseStudies';
 const canonicalPaths = new Map<string, string>([
   ['', '/'],
   ['/resume', '/resume/'],
+  ['/about', '/about/'],
+  ['/contact', '/contact/'],
   ...caseStudies.map((study): [string, string] => [
     '/projects/' + study.slug,
     '/projects/' + study.slug,

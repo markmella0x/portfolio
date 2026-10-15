@@ -8,11 +8,30 @@ export const notFoundMetadata: PageMetadata = {
   noIndex: true,
 };
 export const resumeMetadata: PageMetadata = {
-  title: 'Resume — ' + profile.fullName + ' | ' + profile.role,
+  title: profile.fullName + ' — Software Engineer Resume',
   description:
     'Resume for ' +
     profile.fullName +
-    ': Software engineer with 6+ years of experience, transitioning into agentic AI engineering. Frontend development, REST APIs, performance, and SEO.',
+    ': 6+ years in frontend development, REST APIs and performance, transitioning into agentic AI engineering. View experience, skills and the PDF.',
+  breadcrumb: ui.resumeLabel,
+};
+export const aboutMetadata: PageMetadata = {
+  title: 'About ' + profile.name + ' | Software Engineer',
+  description:
+    'Meet ' +
+    profile.fullName +
+    ', a software engineer with 6+ years of frontend, API and full-stack experience, transitioning into agentic AI engineering.',
+  pageType: 'AboutPage',
+  breadcrumb: 'About',
+};
+export const contactMetadata: PageMetadata = {
+  title: 'Contact ' + profile.name + ' | Software Engineer',
+  description:
+    'Contact ' +
+    profile.fullName +
+    ' for software development projects or recruitment. Reach me by email or LinkedIn, and review my software engineering resume.',
+  pageType: 'ContactPage',
+  breadcrumb: 'Contact',
 };
 export function getCaseStudyMetadata(study: CaseStudy): PageMetadata {
   const project = projects.find((entry) => entry.caseStudySlug === study.slug);
@@ -20,5 +39,6 @@ export function getCaseStudyMetadata(study: CaseStudy): PageMetadata {
     title: (project?.title ?? study.title) + ' | ' + profile.fullName,
     description: study.summary,
     caseStudy: study,
+    breadcrumb: study.title,
   };
 }

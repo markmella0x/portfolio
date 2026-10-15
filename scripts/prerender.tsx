@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { renderToString } from 'react-dom/server';
 import { Route, Routes, StaticRouter } from 'react-router-dom';
@@ -7,13 +7,23 @@ import { StartupIntro } from '../src/components/StartupIntro';
 import { Home } from '../src/pages/Home';
 import { CaseStudy } from '../src/pages/CaseStudy';
 import { Resume } from '../src/pages/Resume';
+import { AboutPage } from '../src/pages/About';
+import { ContactPage } from '../src/pages/Contact';
 import { NotFound } from '../src/pages/NotFound';
 import { caseStudies } from '../src/data/caseStudies';
 import { homeMetadata } from '../src/data/profile';
-import { getCaseStudyMetadata, notFoundMetadata, resumeMetadata } from '../src/data/metadata';
-import { site } from '../src/data/site';
+import {
+  aboutMetadata,
+  contactMetadata,
+  getCaseStudyMetadata,
+  notFoundMetadata,
+  resumeMetadata,
+} from '../src/data/metadata';
+import { getProductionSiteConfig } from './site-environment';
 import { getPageSeo, serializeStructuredData } from '../src/utils/seo';
 import type { PageMetadata } from '../src/types';
+
+const publicConfig = getProductionSiteConfig();
 
 function escapeHtml(value: string): string {
   return value.replace(/[&<>"']/g, (character) => {
@@ -37,12 +47,19 @@ function renderPage(template: string, path: string, metadata: PageMetadata): str
           <Route path="/" element={<Home />} />
           <Route path="/projects/:slug" element={<CaseStudy />} />
           <Route path="/resume" element={<Resume />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </SiteShell>
     </StaticRouter>,
   );
-  const seo = getPageSeo(path, metadata);
+  const seo = getPageSeo(
+    path,
+    metadata,
+    publicConfig.origin,
+    publicConfig.googleSiteVerification,
+  );
   const head = [
     '<title>' + escapeHtml(metadata.title) + '</title>',
     ...seo.tags.map(
@@ -68,7 +85,7 @@ function renderPage(template: string, path: string, metadata: PageMetadata): str
   return template
     .replace(/<title>[\s\S]*?<\/title>/, '')
     .replace(
-      /<meta (?:name="(?:description|author|robots|twitter:[^"]+)"|property="og:[^"]+")[^>]*>/g,
+      /<meta (?:name="(?:description|author|robots|google-site-verification|twitter:[^"]+)"|property="og:[^"]+")[^>]*>/g,
       '',
     )
     .replace('</head>', head.join('\n') + '\n</head>')
@@ -87,6 +104,8 @@ async function prerender(): Promise<void> {
   const pages = [
     { path: '/', metadata: homeMetadata, file: 'index.html' },
     { path: '/resume/', metadata: resumeMetadata, file: 'resume/index.html' },
+    { path: '/about/', metadata: aboutMetadata, file: 'about/index.html' },
+    { path: '/contact/', metadata: contactMetadata, file: 'contact/index.html' },
     ...caseStudies.map((study) => ({
       path: '/projects/' + study.slug,
       metadata: getCaseStudyMetadata(study),
@@ -99,24 +118,34 @@ async function prerender(): Promise<void> {
     await mkdir(resolve(destination, '..'), { recursive: true });
     await writeFile(destination, renderPage(template, page.path, page.metadata));
   }
-  const origin = site.origin ?? site.previewOrigin;
-  const sitemap =
-    '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-    pages
-      .filter((page) => !page.metadata.noIndex)
-      .map(
-        (page) =>
-          '  <url><loc>' + escapeHtml(new URL(page.path, origin).href) + '</loc></url>',
-      )
-      .join('\n') +
-    '\n</urlset>\n';
-  await writeFile(resolve(output, 'sitemap.xml'), sitemap);
+  const origin = publicConfig.origin;
+  if (origin) {
+    const sitemap =
+      '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+      pages
+        .filter((page) => !page.metadata.noIndex)
+        .map(
+          (page) =>
+            '  <url><loc>' + escapeHtml(new URL(page.path, origin).href) + '</loc></url>',
+        )
+        .join('\n') +
+      '\n</urlset>\n';
+    await writeFile(resolve(output, 'sitemap.xml'), sitemap);
+  } else {
+    await rm(resolve(output, 'sitemap.xml'), { force: true });
+  }
   await writeFile(
     resolve(output, 'robots.txt'),
-    'User-agent: *\nAllow: /\nSitemap: ' + origin + '/sitemap.xml\n',
+    'User-agent: *\nAllow: /\n' +
+      (origin
+        ? 'Sitemap: ' + origin + '/sitemap.xml\n'
+        : '# Preview build: HTML pages are noindex; configure VITE_SITE_URL for launch.\n'),
   );
   process.stdout.write(
-    'Prerendered home, résumé, three case studies, and 404; generated sitemap and robots.\n',
+    'Prerendered seven content pages and 404. ' +
+      (origin
+        ? 'Public canonical URLs, sitemap, and robots use ' + origin + '.\n'
+        : 'Preview SEO: noindex pages; no public canonical URLs or sitemap. Set VITE_SITE_URL before launch.\n'),
   );
 }
 

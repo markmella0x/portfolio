@@ -2,18 +2,20 @@
 
 Personal portfolio and resume for **Mark Julius P. Mella**, a software engineer with 6+ years across freelance and product development, transitioning into agentic AI engineering. The headline is **Software Engineer | Agentic AI Engineer**. The site presents frontend development, API integration, performance, SEO, and agentic AI workflows.
 
-Built with React 18, TypeScript, Vite, Tailwind CSS 4, and React Router 7. The build produces static HTML for the home page, resume, three case studies, and an error page.
+Built with React 18, TypeScript, Vite, Tailwind CSS 4, and React Router 7. The build produces static HTML for the home, About, Contact, resume, three case studies, and error pages.
 
 ## Features
 
 - Twelve project summaries with personal contributions, technology stacks, and results; three detailed case studies.
+- A dedicated About page and Contact page, with direct email enquiries for clients and recruiters, LinkedIn, GitHub, and resume links.
 - Responsive light and dark themes, keyboard navigation, visible focus, and reduced-motion support.
 - A skippable first-visit introduction and finite project illustrations.
 - A two-page, selectable-text A4 resume with a web preview and PDF download.
-- Route-specific metadata, social cards, JSON-LD, sitemap, and a noindex error page.
+- Route-specific metadata, social cards, connected Person/ProfilePage JSON-LD, and breadcrumbs.
+- Validated public SEO settings, a production sitemap, Search Console verification support, and checks for broken links and launch configuration.
 - Self-hosted Archivo font, with its license in `public/fonts/LICENSE.txt`.
 
-Client projects use generic titles and original descriptions and diagrams. Client source code, private repository links, internal identifiers, credentials, and contribution-review evidence are excluded. The resume includes approved employment company names.
+Client projects use generic titles and original descriptions and diagrams. Client source code, private repository links, internal identifiers, credentials, and contribution-review evidence are excluded. Employment history includes approved employer and product names.
 
 ## Run locally
 
@@ -37,14 +39,17 @@ Open [http://127.0.0.1:4173/](http://127.0.0.1:4173/). On Windows PowerShell, us
 
 ## Commands
 
-| Command                | Purpose                                              |
-| ---------------------- | ---------------------------------------------------- |
-| `npm run dev`          | Start the local development server                   |
-| `npm run build`        | Check TypeScript, bundle, and prerender static pages |
-| `npm run preview`      | Serve the production build with redirects and 404s   |
-| `npm run lint`         | Check ESLint rules with zero warnings allowed        |
-| `npm run format:check` | Check formatting                                     |
-| `npm run format`       | Apply formatting                                     |
+| Command                | Purpose                                               |
+| ---------------------- | ----------------------------------------------------- |
+| `npm run dev`          | Start the local development server                    |
+| `npm run build`        | Check TypeScript, bundle, and prerender static pages  |
+| `npm run build:public` | Require the real public URL, build, and validate SEO  |
+| `npm run preview`      | Serve the production build with redirects and 404s    |
+| `npm run lint`         | Check ESLint rules with zero warnings allowed         |
+| `npm run seo:check`    | Validate the built pages, metadata, links and assets  |
+| `npm run test:seo`     | Test public/preview indexing and configuration guards |
+| `npm run format:check` | Check formatting                                      |
+| `npm run format`       | Apply formatting                                      |
 
 ## Project structure
 
@@ -53,7 +58,7 @@ src/
   components/    Shared sections, navigation, illustrations, and resume document
   data/          Profile, projects, skills, career, resume, and SEO configuration
   hooks/         Theme, metadata, and finite diagram motion
-  pages/         Home, resume, case study, and not found
+  pages/         Home, About, Contact, resume, case study, and not found
   styles/        Theme tokens, responsive layouts, motion, and print styles
   types/         Content interfaces
   utils/         Shared SEO generation and safe JSON-LD serialization
@@ -66,6 +71,8 @@ Build output, dependencies, local browser artifacts, environment files, and edit
 ## Edit content
 
 Update `src/data/profile.ts` for identity and contacts, `resume.ts` for employment and resume copy, and `projects.ts` and `caseStudies.ts` for selected work. Skills, career milestones, workflow copy, and labels have their own files in `src/data/`.
+
+The full biography lives at `/about/`; `/contact/` offers email enquiries for projects and recruitment. Contact links open a prefilled Gmail compose tab on desktop, or the visitor's email app on phones and tablets. Recipient, subject and an editable message are included. Gmail may require sign-in; the visitor reviews and sends the message. Static HTML without JavaScript and résumé PDF contacts retain standard email links. Edit the draft text and page-specific copy in `src/data/pages.ts`. These pages have unique metadata and AboutPage/ContactPage structured data. Home-page previews link to them, while existing `/#about` and `/#contact` links still reach the corresponding previews. There is no message-submission service to configure.
 
 A case study must have a matching project slug and 200-400 words of body text. The build validates its length and generates its route and sitemap entry. Theme colors live in `src/styles/tokens.css`.
 
@@ -84,9 +91,11 @@ The export checks that content fits two A4 pages before writing `public/resume/M
 
 ## Website hosting
 
-Publishing this repository does not deploy the website. Set `site.origin` in `src/data/site.ts` to the actual HTTPS origin before a website launch, then rebuild. Until configured, canonical URLs are omitted and sitemap URLs use the local preview origin.
+Publishing this repository does not deploy the website. Copy `.env.example` to `.env.production.local`, set `VITE_SITE_URL` to the real HTTPS website address, and run `npm run build:public`. The same setting controls prerendered and client-side metadata, canonical links, structured-data URLs, social images, robots, and the sitemap. Without it, review builds use `noindex`, omit canonical links, and do not generate a public sitemap. The public-build command rejects missing or invalid launch settings.
 
-The site expects hosting at the domain root. Configure the host to serve each generated route's `index.html`, normalize URL variants, and return `404.html` with HTTP 404 for missing paths. The local Vite preview implements these behaviors; a static host needs equivalent configuration. A repository subpath requires additional base-path and router configuration.
+`VITE_GOOGLE_SITE_VERIFICATION` optionally adds the actual Search Console HTML verification token. Leave it empty when using DNS verification. Both environment values are public website configuration; never place credentials in `VITE_` variables. See [SEO.md](SEO.md) for the complete launch and Google Search Console setup.
+
+The site expects hosting at the domain root. Configure the host to serve each generated route's `index.html`, including `about/index.html`, `contact/index.html`, and `resume/index.html`; normalize URL variants; and return `404.html` with HTTP 404 for missing paths. The local Vite preview implements these behaviors; a static host needs equivalent configuration. A repository subpath requires additional base-path and router configuration and is rejected by the current public URL setting.
 
 ## Validation
 

@@ -11,9 +11,20 @@ async function mountApplication(root: HTMLElement): Promise<void> {
   const initialResume = /^\/resume\/?$/.test(window.location.pathname)
     ? (await import('./pages/Resume')).Resume
     : undefined;
+  const initialAbout = /^\/about\/?$/.test(window.location.pathname)
+    ? (await import('./pages/About')).AboutPage
+    : undefined;
+  const initialContact = /^\/contact\/?$/.test(window.location.pathname)
+    ? (await import('./pages/Contact')).ContactPage
+    : undefined;
   createRoot(root).render(
     <StrictMode>
-      <App initialCaseStudy={initialCaseStudy} initialResume={initialResume} />
+      <App
+        initialCaseStudy={initialCaseStudy}
+        initialResume={initialResume}
+        initialAbout={initialAbout}
+        initialContact={initialContact}
+      />
     </StrictMode>,
   );
 }

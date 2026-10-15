@@ -86,7 +86,7 @@ export const resume: ResumeContent = {
       organization: 'DigiPlus Interactive Corp',
       period: 'May 2022 - Present',
       bullets: [
-        'Integrate REST APIs and real-time features for sports, account management, deposits, withdrawals, and customer support.',
+        'Integrate REST APIs and real-time services for ArenaPlus sportsbook features, including sports data, accounts, deposits, withdrawals, and customer support.',
         'Develop and maintain sportsbook and SEO-focused web applications using Vue 3, TypeScript, Vite, and Tailwind CSS.',
         'Build responsive user interfaces, reusable components, shared layouts, design tokens, and light and dark themes for web and mobile.',
         'Optimize application loading through caching, image and font delivery, lazy loading, and code splitting.',
@@ -98,7 +98,7 @@ export const resume: ResumeContent = {
       organization: 'Solid Leisure Solutions',
       period: 'May 2022 - May 2023',
       bullets: [
-        'Maintained production web applications and delivered frontend updates.',
+        'Maintained and enhanced BingoPlus web interfaces for a digital bingo platform.',
         'Translated Figma designs into responsive user interfaces.',
         'Integrated REST APIs to connect interfaces with backend services.',
         'Integrated customer-support chat into web applications.',

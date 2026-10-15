@@ -25,18 +25,36 @@ html:has(.theme-toggle:focus-visible) .site-content *::after {
   transition: none !important;
 }
 @media screen and (prefers-reduced-motion: no-preference) {
-  html[data-theme-transition='fade'],
-  html[data-theme-transition='fade'] body,
-  html[data-theme-transition='fade'] .site-content *,
-  html[data-theme-transition='fade'] .site-content *::before,
-  html[data-theme-transition='fade'] .site-content *::after {
-    transition-property:
-      background-color, color, border-color, fill, stroke, box-shadow, text-decoration-color,
-      outline-color !important;
-    transition-duration: 220ms !important;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  /* Capture a complete palette, without thousands of individual color transitions. */
+  html[data-theme-transition='crossfade'] .site-content *,
+  html[data-theme-transition='crossfade'] .site-content *::before,
+  html[data-theme-transition='crossfade'] .site-content *::after {
+    transition: none !important;
   }
-  html[data-theme-transition='fade'] .theme-toggle-icon svg {
-    transition: opacity 180ms ease !important;
+  html[data-theme-transition='crossfade']::view-transition {
+    pointer-events: none;
+  }
+  html[data-theme-transition='crossfade']::view-transition-group(root) {
+    animation: none;
+  }
+  html[data-theme-transition='crossfade']::view-transition-old(root) {
+    animation-duration: 220ms;
+    animation-timing-function: var(--ease-out);
+    /* Keep the old image transparent until its snapshot tree is removed. */
+    animation-fill-mode: both;
+    /* Only the old snapshot fades; additive blending would brighten the new palette. */
+    mix-blend-mode: normal !important;
+    z-index: 1;
+  }
+  html[data-theme-transition='crossfade']::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+}
+@media print, (prefers-reduced-motion: reduce) {
+  html::view-transition-group(root),
+  html::view-transition-old(root),
+  html::view-transition-new(root) {
+    animation: none !important;
   }
 }

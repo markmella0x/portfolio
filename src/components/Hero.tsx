@@ -27,9 +27,9 @@ export function Hero(): JSX.Element {
           <Link className="button button-secondary" to="/resume/">
             {ui.viewResume}
           </Link>
-          <a className="text-link" href="#contact">
+          <Link className="text-link" to="/contact/">
             {ui.getInTouch}
-          </a>
+          </Link>
         </div>
         <ul className="focus-tags" aria-label={profile.title}>
           {profile.focus.map((item) => (

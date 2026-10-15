@@ -1,8 +1,10 @@
 import { profile } from './profile';
+import { getSiteConfig } from '../utils/siteConfig';
 
-// Set the approved public origin before publishing. Until then, SEO files use the local preview.
+// Vite replaces these public environment values in the browser bundle.
+// Prerendering loads the same production environment explicitly.
 export const site = {
-  origin: null as string | null,
+  ...getSiteConfig(import.meta.env ?? {}),
   previewOrigin: 'http://127.0.0.1:4173',
   socialImage: '/og-image.png',
   socialImageWidth: 1200,
