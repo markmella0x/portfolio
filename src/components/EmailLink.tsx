@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { ui } from '../data/ui';
+import { useClientLayoutEffect } from '../hooks/useClientLayoutEffect';
 import { createEmailHref, prefersNativeEmail } from '../utils/email';
 import type { EmailDraft } from '../utils/email';
 
@@ -13,7 +15,8 @@ export function EmailLink({
   className?: string;
   children: string;
 }): JSX.Element {
-  const nativeEmail = prefersNativeEmail();
+  const [nativeEmail, setNativeEmail] = useState(true);
+  useClientLayoutEffect(() => setNativeEmail(prefersNativeEmail()), []);
   return (
     <a
       className={className}

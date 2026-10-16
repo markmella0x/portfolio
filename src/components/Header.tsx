@@ -1,14 +1,16 @@
-import { useEffect, useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ui } from '../data/ui';
 import { profile } from '../data/profile';
 import { ThemeToggle } from './ThemeToggle';
+import { useClientLayoutEffect } from '../hooks/useClientLayoutEffect';
 
 export function Header(): JSX.Element {
   const location = useLocation();
   const header = useRef<HTMLElement>(null);
+  const [hydrated, setHydrated] = useState(false);
 
-  useEffect(() => {
+  useClientLayoutEffect(() => {
     const element = header.current;
     if (!element) return;
     const root = document.documentElement;
@@ -20,6 +22,7 @@ export function Header(): JSX.Element {
       root.style.setProperty('--header-offset', height + 8 + 'px');
     };
     updateOffset();
+    setHydrated(true);
     const observer =
       typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(updateOffset);
     observer?.observe(element);
@@ -45,7 +48,7 @@ export function Header(): JSX.Element {
               to={item.href}
               aria-current={
                 item.href.includes('#')
-                  ? location.pathname + location.hash === item.href
+                  ? hydrated && location.pathname + location.hash === item.href
                     ? 'location'
                     : undefined
                   : location.pathname.replace(/\/+$/, '') === item.href.replace(/\/+$/, '')

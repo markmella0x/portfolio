@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import { App } from './App';
 import './styles/main.css';
 
@@ -14,15 +14,19 @@ async function mountApplication(root: HTMLElement): Promise<void> {
   const initialContact = /^\/contact\/?$/.test(window.location.pathname)
     ? (await import('./pages/Contact')).ContactPage
     : undefined;
-  createRoot(root).render(
+  const application = (
     <StrictMode>
       <App
         initialCaseStudy={initialCaseStudy}
         initialAbout={initialAbout}
         initialContact={initialContact}
       />
-    </StrictMode>,
+    </StrictMode>
   );
+  // Production pages already contain this tree. Attach to it instead of
+  // replacing the visible header and article when JavaScript becomes ready.
+  if (root.hasChildNodes()) hydrateRoot(root, application);
+  else createRoot(root).render(application);
 }
 
 const root = document.getElementById('root');

@@ -1,5 +1,6 @@
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { Suspense } from 'react';
 import { renderToString } from 'react-dom/server';
 import { Route, Routes, StaticRouter } from 'react-router-dom';
 import { SiteShell } from '../src/components/SiteShell';
@@ -11,6 +12,7 @@ import { AboutPage } from '../src/pages/About';
 import { ContactPage } from '../src/pages/Contact';
 import { NotFound } from '../src/pages/NotFound';
 import { caseStudies } from '../src/data/caseStudies';
+import { ui } from '../src/data/ui';
 import { homeMetadata } from '../src/data/profile';
 import {
   aboutMetadata,
@@ -43,14 +45,22 @@ function renderPage(template: string, path: string, metadata: PageMetadata): str
     <StaticRouter location={path}>
       {path === '/' ? <StartupIntro /> : null}
       <SiteShell>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects/:slug" element={<CaseStudy />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense
+          fallback={
+            <p className="container route-loading" role="status">
+              {ui.loadingLabel}
+            </p>
+          }
+        >
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects/:slug" element={<CaseStudy />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </SiteShell>
     </StaticRouter>,
   );

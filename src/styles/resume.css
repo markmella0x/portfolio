@@ -2,8 +2,8 @@
   padding-bottom: 3rem;
 }
 .resume-toolbar {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
@@ -13,13 +13,7 @@
   display: inline-flex;
   align-items: center;
 }
-.resume-toolbar-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem 1.5rem;
-}
-.resume-toolbar-actions p {
+.resume-format {
   margin: 0;
   color: var(--text-muted);
   font-size: 0.88rem;
@@ -177,12 +171,80 @@
   color: var(--resume-muted);
   font-size: 0.6667rem;
 }
-@media screen and (max-width: 700px) {
+@media screen {
+  .resume-document {
+    --resume-text: var(--text);
+    --resume-muted: var(--text-muted);
+    --resume-border: var(--border);
+    --resume-accent: var(--accent);
+  }
+  .resume-sheet {
+    background: var(--surface-raised);
+    font-family: var(--font-body);
+  }
+  .resume-section h2 {
+    color: var(--resume-text);
+  }
+}
+@media screen and (max-width: 767px) {
+  .resume-toolbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.25rem 0.75rem;
+    padding-block: 1rem 1.5rem;
+  }
+  .resume-back {
+    font-size: 0.875rem;
+  }
+  .resume-download {
+    grid-column: 2;
+    grid-row: 1;
+    padding-inline: 0.875rem;
+    font-size: 0.875rem;
+  }
+  .resume-format {
+    grid-column: 2;
+    text-align: center;
+    font-size: 0.8125rem;
+  }
+  .resume-document {
+    display: block;
+  }
   .resume-sheet {
     min-height: 0;
-    padding: clamp(1rem, 4vw, 1.5rem);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
     font-size: 1rem;
     line-height: 1.6;
+  }
+  .resume-sheet + .resume-sheet {
+    margin-top: 2rem;
+  }
+  .resume-sheet-footer {
+    display: none;
+  }
+  .resume-document-header {
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--resume-border);
+  }
+  .resume-sheet .resume-role {
+    font-size: 1.0625rem;
+    text-wrap: balance;
+  }
+  .resume-section {
+    margin-bottom: 1.75rem;
+  }
+  .resume-entry {
+    margin-bottom: 1.25rem;
+  }
+  .resume-skills dt,
+  .resume-skills dd {
+    display: block;
+  }
+  .resume-skills > div {
+    margin-bottom: 0.75rem;
   }
   .resume-sheet h3 {
     font-size: 1rem;
@@ -193,7 +255,7 @@
   .resume-entry-heading > span,
   .resume-sheet .resume-organization,
   .resume-sheet .resume-project-skills {
-    font-size: 0.82rem;
+    font-size: 0.875rem;
   }
 }
 @page resume {

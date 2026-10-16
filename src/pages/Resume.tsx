@@ -13,16 +13,14 @@ export function Resume(): JSX.Element {
         <Link className="text-link resume-back" to="/">
           {ui.resumeBack}
         </Link>
-        <div className="resume-toolbar-actions">
-          <p>{ui.resumeFormat}</p>
-          <a
-            className="button button-primary"
-            href={profile.contact.resume ?? undefined}
-            download={profile.contact.resume?.split('/').pop()}
-          >
-            {ui.downloadResume}
-          </a>
-        </div>
+        <p className="resume-format">{ui.resumeFormat}</p>
+        <a
+          className="button button-primary resume-download"
+          href={profile.contact.resume ?? undefined}
+          download={profile.contact.resume?.split('/').pop()}
+        >
+          {ui.downloadResume}
+        </a>
       </div>
       <div className="container resume-preview">
         <ResumeDocument />

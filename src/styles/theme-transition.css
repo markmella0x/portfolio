@@ -37,7 +37,12 @@ html:has(.theme-toggle:focus-visible) .site-content *::after {
   html[data-theme-transition='crossfade']::view-transition-group(root) {
     animation: none;
   }
-  html[data-theme-transition='crossfade']::view-transition-old(root) {
+  html[data-theme-transition='crossfade']::view-transition-group(portfolio-header) {
+    animation: none;
+    z-index: 2;
+  }
+  html[data-theme-transition='crossfade']::view-transition-old(root),
+  html[data-theme-transition='crossfade']::view-transition-old(portfolio-header) {
     animation-duration: 220ms;
     animation-timing-function: var(--ease-out);
     /* Keep the old image transparent until its snapshot tree is removed. */
@@ -46,7 +51,8 @@ html:has(.theme-toggle:focus-visible) .site-content *::after {
     mix-blend-mode: normal !important;
     z-index: 1;
   }
-  html[data-theme-transition='crossfade']::view-transition-new(root) {
+  html[data-theme-transition='crossfade']::view-transition-new(root),
+  html[data-theme-transition='crossfade']::view-transition-new(portfolio-header) {
     animation: none;
     mix-blend-mode: normal;
   }
@@ -54,7 +60,10 @@ html:has(.theme-toggle:focus-visible) .site-content *::after {
 @media print, (prefers-reduced-motion: reduce) {
   html::view-transition-group(root),
   html::view-transition-old(root),
-  html::view-transition-new(root) {
+  html::view-transition-new(root),
+  html::view-transition-group(portfolio-header),
+  html::view-transition-old(portfolio-header),
+  html::view-transition-new(portfolio-header) {
     animation: none !important;
   }
 }

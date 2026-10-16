@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 import type { Theme } from '../types';
+import { useClientLayoutEffect } from './useClientLayoutEffect';
 
 const storageKey = 'julius-theme';
 
@@ -27,10 +28,18 @@ function applyTheme(theme: Theme): void {
 }
 
 export function useTheme(): { theme: Theme; toggleTheme: (animate?: boolean) => void } {
-  const [theme, setTheme] = useState<Theme>(readInitialTheme);
+  // Keep the first render identical to the static HTML, then sync the saved
+  // palette before paint. The root's inline startup script already colors it.
+  const [theme, setTheme] = useState<Theme>('light');
   const requestedTheme = useRef(theme);
   const transition = useRef<ViewTransition | null>(null);
   const revision = useRef(0);
+
+  useClientLayoutEffect(() => {
+    const initial = readInitialTheme();
+    requestedTheme.current = initial;
+    setTheme(initial);
+  }, []);
 
   const clearEffect = useCallback((): void => {
     revision.current += 1;

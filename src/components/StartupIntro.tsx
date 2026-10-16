@@ -1,13 +1,28 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useSyncExternalStore } from 'react';
+import { useLocation } from 'react-router-dom';
 import { intro } from '../data/intro';
 import { profile } from '../data/profile';
 
+function introIsPlaying(): boolean {
+  return ['playing', 'leaving'].includes(document.documentElement.dataset.intro ?? '');
+}
+
+function subscribeToIntro(update: () => void): () => void {
+  const observer = new MutationObserver(update);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-intro'],
+  });
+  return () => observer.disconnect();
+}
+
 export function StartupIntro(): JSX.Element | null {
-  const [visible, setVisible] = useState(
-    () =>
-      typeof document === 'undefined' ||
-      (['playing', 'leaving'].includes(document.documentElement.dataset.intro ?? '') &&
-        !matchMedia('(prefers-reduced-motion: reduce)').matches),
+  const { pathname } = useLocation();
+  // Match the prerendered home markup; CSS keeps a seen/skipped intro hidden.
+  const visible = useSyncExternalStore(
+    subscribeToIntro,
+    introIsPlaying,
+    () => pathname === '/',
   );
   const overlay = useRef<HTMLDivElement>(null);
 
@@ -20,7 +35,6 @@ export function StartupIntro(): JSX.Element | null {
     } catch {
       // The intro still completes when browser storage is unavailable.
     }
-    setVisible(false);
     if (hadFocus) {
       requestAnimationFrame(() =>
         document.getElementById('main-content')?.focus({ preventScroll: true }),
@@ -29,7 +43,11 @@ export function StartupIntro(): JSX.Element | null {
   }
 
   useEffect(() => {
-    if (!visible) {
+    const preference = matchMedia('(prefers-reduced-motion: reduce)');
+    const playing = ['playing', 'leaving'].includes(
+      document.documentElement.dataset.intro ?? '',
+    );
+    if (!visible || !playing || preference.matches) {
       delete document.documentElement.dataset.intro;
       delete document.documentElement.dataset.introStarted;
       if (document.documentElement.dataset.introFocus === 'main') {
@@ -38,7 +56,6 @@ export function StartupIntro(): JSX.Element | null {
       }
       return;
     }
-    const preference = matchMedia('(prefers-reduced-motion: reduce)');
     const started = Number(document.documentElement.dataset.introStarted);
     const timer = window.setTimeout(finish, Math.max(0, 1000 - (performance.now() - started)));
     function onKey(event: KeyboardEvent): void {
