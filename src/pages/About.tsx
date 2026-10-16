@@ -4,11 +4,13 @@ import { aboutPage } from '../data/pages';
 import { aboutMetadata } from '../data/metadata';
 import { ui } from '../data/ui';
 import { useMetadata } from '../hooks/useMetadata';
+import { usePageMotion } from '../hooks/usePageMotion';
 
 export function AboutPage(): JSX.Element {
   useMetadata(aboutMetadata);
+  const motion = usePageMotion<HTMLElement>();
   return (
-    <article className="container information-page about-page">
+    <article className="container information-page about-page" ref={motion}>
       <PageHeader
         label={aboutPage.label}
         title={aboutPage.title}

@@ -1,6 +1,6 @@
-# Mark Julius - Portfolio
+# Mark Julius M. - Portfolio
 
-Personal portfolio and resume for **Mark Julius P. Mella**, a software engineer with 6+ years across freelance and product development, transitioning into agentic AI engineering. The headline is **Software Engineer | Agentic AI Engineer**. The site presents frontend development, API integration, performance, SEO, and agentic AI workflows.
+Personal portfolio and resume for **Mark Julius M.**, a software engineer with 6+ years across freelance and product development, transitioning into agentic AI engineering. The headline is **Software Engineer | Agentic AI Engineer**. The site presents frontend development, API integration, performance, SEO, and agentic AI workflows.
 
 Built with React 18, TypeScript, Vite, Tailwind CSS 4, and React Router 7. The build produces static HTML for the home, About, Contact, resume, three case studies, and error pages.
 
@@ -90,7 +90,7 @@ npx --yes --package @playwright/cli playwright-cli --session resume-export close
 npm run build
 ```
 
-The export checks that content fits two A4 pages before writing `public/resume/Mark-Julius-Mella-Resume.pdf`. Rebuild afterward to update the production download.
+The export checks that content fits two A4 pages before writing `public/resume/Mark-Julius-M-Resume.pdf`. Rebuild afterward to update the production download.
 
 ## Website hosting
 

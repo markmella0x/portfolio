@@ -4,7 +4,7 @@ The confirmed public website is [https://markjulius.vercel.app/](https://markjul
 
 ## Identity and page information
 
-The public display name is **Mark Julius**. The full identity is **Mark Julius P. Mella**, matching the résumé. Person structured data connects these names to the supplied GitHub and LinkedIn profiles. The headline remains **Software Engineer | Agentic AI Engineer**, with supporting copy explaining the transition into agentic AI engineering and the 6+ years of software development experience.
+The public display name and résumé name are **Mark Julius M.** Person structured data connects this name to the supplied GitHub and LinkedIn profiles. The headline remains **Software Engineer | Agentic AI Engineer**, with supporting copy explaining the transition into agentic AI engineering and the 6+ years of software development experience.
 
 | Page                                   | Search information                                                                                    |
 | -------------------------------------- | ----------------------------------------------------------------------------------------------------- |
@@ -46,7 +46,7 @@ The local preview implements the route behavior below. `vercel.json` adds perman
 | `/index.html`, known route `/index.html` variants, case-study trailing slashes | Permanent redirect to the canonical route; preserve query parameters     |
 | Unknown page, including a nested unknown route                                 | `404.html` with HTTP 404, rather than a home-page response with HTTP 200 |
 | `/robots.txt`, `/sitemap.xml`, `/og-image.png`, `/favicon.svg`                 | Publicly accessible files with correct content types                     |
-| `/resume/Mark-Julius-Mella-Resume.pdf`                                         | Publicly accessible PDF download                                         |
+| `/resume/Mark-Julius-M-Resume.pdf`                                             | Publicly accessible PDF download                                         |
 
 Redirect HTTP to HTTPS and alternate domain names to the selected canonical hostname. Serve every HTML route independently; do not rewrite all unknown paths to `/index.html`. Assets, metadata and page content must remain accessible without authentication. Check that the hosting service adds no production `X-Robots-Tag: noindex` header. For the résumé PDF, the host can optionally send an HTTP `Link` header with `rel="canonical"` pointing to the absolute `/resume/` address, so the HTML résumé is the preferred search version. Google's [canonical URL guide](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls) covers PDF headers.
 
@@ -59,7 +59,7 @@ After deployment, verify the responses above on the actual hostname and check th
 3. After deployment, submit `https://markjulius.vercel.app/sitemap.xml` in the Sitemaps report. Its seven URLs must match the confirmed canonical hostname. A sitemap supports discovery; it does not guarantee indexing or ranking. See Google's [sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap).
 4. Inspect the live home, About, Contact, résumé and project URLs. Run the live URL test, resolve any crawl/indexing errors, and request indexing for the important pages. Check ProfilePage/Breadcrumb markup with the [Rich Results Test](https://search.google.com/test/rich-results) and WebSite markup with the [Schema Markup Validator](https://validator.schema.org/).
 5. The résumé now links to the supplied public address; regenerate the two-page PDF whenever that link changes. The website fields of existing professional profiles can use the same address. Profile updates are separate actions requiring the user's authorization.
-6. Monitor Page indexing and Performance reports for searches using **Mark Julius** and **Mark Julius P. Mella**, including impressions, clicks and the landing pages. Use the [Search Console getting-started guide](https://developers.google.com/search/docs/monitor-debug/search-console-start). Google ownership verification, sitemap submission and indexing have not been performed by the local build. No Search Console verification token was supplied, so none is fabricated.
+6. Monitor Page indexing and Performance reports for searches using **Mark Julius M.**, including impressions, clicks and the landing pages. Use the [Search Console getting-started guide](https://developers.google.com/search/docs/monitor-debug/search-console-start). Google ownership verification, sitemap submission and indexing have not been performed by the local build. No Search Console verification token was supplied, so none is fabricated.
 
 ## Repeatable checks
 

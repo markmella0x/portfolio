@@ -6,12 +6,14 @@ import { contactMetadata } from '../data/metadata';
 import { profile } from '../data/profile';
 import { ui } from '../data/ui';
 import { useMetadata } from '../hooks/useMetadata';
+import { usePageMotion } from '../hooks/usePageMotion';
 
 export function ContactPage(): JSX.Element {
   useMetadata(contactMetadata);
+  const motion = usePageMotion<HTMLElement>();
   const email = profile.contact.email;
   return (
-    <article className="container information-page contact-page">
+    <article className="container information-page contact-page" ref={motion}>
       <PageHeader
         label={contactPage.label}
         title={contactPage.title}

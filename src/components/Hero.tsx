@@ -9,7 +9,7 @@ export function Hero(): JSX.Element {
       <div className="hero-copy">
         <p className="hero-intro">{profile.title}</p>
         <h1 id="hero-title">
-          {profile.name}
+          {profile.name.replace(/\.$/, '')}
           <span className="hero-period" aria-hidden="true">
             .
           </span>

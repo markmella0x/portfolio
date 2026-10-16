@@ -35,7 +35,7 @@ export function Header(): JSX.Element {
     <header className="header" ref={header}>
       <div className="container header-inner">
         <Link className="wordmark" to="/" aria-label={ui.homeLabel}>
-          {profile.name}
+          {profile.name.replace(/\.$/, '')}
           <span aria-hidden="true">.</span>
         </Link>
         <nav aria-label={ui.brandLabel}>

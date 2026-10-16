@@ -9,7 +9,7 @@ function SocialCard(): JSX.Element {
       <div className="intro">
         <p className="role">{profile.title}</p>
         <h1>
-          {profile.name}
+          {profile.name.replace(/\.$/, '')}
           <span>.</span>
         </h1>
         <h2>

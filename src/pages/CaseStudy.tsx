@@ -4,13 +4,15 @@ import { getCaseStudyMetadata, notFoundMetadata } from '../data/metadata';
 import { useMetadata } from '../hooks/useMetadata';
 import { ui } from '../data/ui';
 import { NotFound } from './NotFound';
+import { usePageMotion } from '../hooks/usePageMotion';
 export function CaseStudy(): JSX.Element {
   const { slug } = useParams();
+  const motion = usePageMotion<HTMLElement>(slug);
   const study = caseStudies.find((item) => item.slug === slug);
   useMetadata(study ? getCaseStudyMetadata(study) : notFoundMetadata);
   if (!study) return <NotFound />;
   return (
-    <article className="container case-study">
+    <article className="container case-study" ref={motion}>
       <Link className="text-link case-back" to="/#work">
         {ui.backToWork}
       </Link>

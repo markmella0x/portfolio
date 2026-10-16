@@ -68,7 +68,7 @@ export function StartupIntro(): JSX.Element | null {
       <div className="startup-intro-content">
         <p className="startup-intro-role">{profile.title}</p>
         <p className="startup-intro-name">
-          {profile.name}
+          {profile.name.replace(/\.$/, '')}
           <span aria-hidden="true">.</span>
         </p>
         <p className="startup-intro-message">{intro.message}</p>

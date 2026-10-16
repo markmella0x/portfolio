@@ -1,6 +1,8 @@
+import { profile } from './profile';
+
 export const ui = {
-  brandLabel: 'Mark Julius / Software and Agentic AI Engineering',
-  homeLabel: 'Mark Julius, home',
+  brandLabel: profile.name + ' / Software and Agentic AI Engineering',
+  homeLabel: profile.name + ', home',
   skipLink: 'Skip to content',
   nav: [
     { label: 'Skills', href: '/#skills' },
@@ -13,7 +15,7 @@ export const ui = {
   viewWork: 'View selected work',
   getInTouch: 'Get in touch',
   aboutPageLink: 'More about me',
-  contactPageLink: 'Contact Mark Julius',
+  contactPageLink: 'Contact ' + profile.name,
   homeBreadcrumb: 'Home',
   breadcrumbLabel: 'Breadcrumb',
   switchToLight: 'Switch to light theme',

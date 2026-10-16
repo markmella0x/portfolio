@@ -7,11 +7,13 @@ import { Contact } from '../components/Contact';
 import { Timeline } from '../components/Timeline';
 import { homeMetadata } from '../data/profile';
 import { useMetadata } from '../hooks/useMetadata';
+import { usePageMotion } from '../hooks/usePageMotion';
 
 export function Home(): JSX.Element {
   useMetadata(homeMetadata);
+  const motion = usePageMotion<HTMLDivElement>();
   return (
-    <>
+    <div className="home-page" ref={motion}>
       <Hero />
       <ProjectsGrid />
       <SkillsSection />
@@ -19,6 +21,6 @@ export function Home(): JSX.Element {
       <Timeline />
       <About />
       <Contact />
-    </>
+    </div>
   );
 }

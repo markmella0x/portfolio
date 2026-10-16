@@ -37,6 +37,7 @@ html[data-intro='playing'] .startup-intro {
   font-weight: 600;
   letter-spacing: -0.065em;
   line-height: 1.2;
+  text-wrap: balance;
 }
 .startup-intro-name > span {
   color: var(--accent);

@@ -6,8 +6,14 @@ export function useDiagramMotion(): RefObject<HTMLDivElement> {
   useEffect(() => {
     const root = grid.current;
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const hover = window.matchMedia('(hover: hover) and (pointer: fine)');
-    if (!root || !('IntersectionObserver' in window)) return;
+    if (!root || !('IntersectionObserver' in window) || !('animate' in Element.prototype))
+      return;
+    if (preference.matches || window.location.hash) return;
+    if (document.activeElement?.matches(':focus-visible')) return;
+    const easing = getComputedStyle(document.documentElement)
+      .getPropertyValue('--ease-out')
+      .trim();
+    let stopped = false;
     const diagrams = root.querySelectorAll<HTMLElement>('.project-diagram');
     const seen = new WeakSet<HTMLElement>();
     const visible = new Set<HTMLElement>();
@@ -19,10 +25,11 @@ export function useDiagramMotion(): RefObject<HTMLDivElement> {
     }
 
     function play(diagram: HTMLElement, delay = 0): void {
-      if (preference.matches || document.hidden || animations.has(diagram)) return;
+      if (stopped || preference.matches || document.hidden || animations.has(diagram)) return;
       const active = new Set<Animation>();
       animations.set(diagram, active);
       seen.add(diagram);
+      observer.unobserve(diagram);
 
       function animate(
         element: Element | null,
@@ -34,13 +41,16 @@ export function useDiagramMotion(): RefObject<HTMLDivElement> {
         const animation = element.animate(frames, {
           duration,
           delay: delay + offset,
-          easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+          easing,
         });
+        animation.id = 'portfolio-diagram';
         active.add(animation);
-        animation.onfinish = () => {
+        function release(): void {
           active.delete(animation);
           if (!active.size) animations.delete(diagram);
-        };
+        }
+        animation.onfinish = release;
+        animation.oncancel = release;
       }
 
       animate(
@@ -91,7 +101,6 @@ export function useDiagramMotion(): RefObject<HTMLDivElement> {
           const diagram = entry.target as HTMLElement;
           if (!entry.isIntersecting || entry.intersectionRatio < 0.4) {
             visible.delete(diagram);
-            cancel(diagram);
             return;
           }
           visible.add(diagram);
@@ -102,19 +111,30 @@ export function useDiagramMotion(): RefObject<HTMLDivElement> {
     );
     diagrams.forEach((diagram) => observer.observe(diagram));
 
-    function replay(event: PointerEvent): void {
-      if (!hover.matches || event.pointerType === 'touch') return;
+    function stop(): void {
+      stopped = true;
+      observer.disconnect();
+      diagrams.forEach(cancel);
+    }
+
+    function onKey(event: KeyboardEvent): void {
+      if (!event.ctrlKey && !event.metaKey && !event.altKey) stop();
+    }
+
+    function onPointer(event: PointerEvent): void {
       if (!(event.target instanceof Element)) return;
-      const card = event.target.closest('.project-card');
-      if (!card) return;
-      const previous = event.relatedTarget;
-      if (previous instanceof Node && card.contains(previous)) return;
-      const diagram = card.querySelector<HTMLElement>('.project-diagram');
-      if (diagram && visible.has(diagram)) play(diagram);
+      const control = event.target.closest('a, button, summary');
+      if (!control) return;
+      diagrams.forEach(cancel);
+      if (control.matches('a[href*="#"]')) stop();
     }
 
     function focus(event: FocusEvent): void {
       if (!(event.target instanceof Element)) return;
+      if (event.target.matches(':focus-visible')) {
+        stop();
+        return;
+      }
       const diagram = event.target
         .closest('.project-card')
         ?.querySelector<HTMLElement>('.project-diagram');
@@ -124,7 +144,11 @@ export function useDiagramMotion(): RefObject<HTMLDivElement> {
     }
 
     function updateMotion(): void {
-      if (preference.matches || document.hidden) {
+      if (preference.matches) {
+        stop();
+        return;
+      }
+      if (document.hidden) {
         diagrams.forEach(cancel);
         return;
       }
@@ -132,15 +156,20 @@ export function useDiagramMotion(): RefObject<HTMLDivElement> {
         if (!seen.has(diagram)) play(diagram);
       });
     }
-    root.addEventListener('pointerover', replay);
-    root.addEventListener('focusin', focus);
+    document.addEventListener('keydown', onKey, true);
+    document.addEventListener('pointerdown', onPointer, true);
+    document.addEventListener('focusin', focus);
+    window.addEventListener('hashchange', stop);
+    window.addEventListener('beforeprint', stop);
     preference.addEventListener('change', updateMotion);
     document.addEventListener('visibilitychange', updateMotion);
     return () => {
-      observer.disconnect();
-      diagrams.forEach(cancel);
-      root.removeEventListener('pointerover', replay);
-      root.removeEventListener('focusin', focus);
+      stop();
+      document.removeEventListener('keydown', onKey, true);
+      document.removeEventListener('pointerdown', onPointer, true);
+      document.removeEventListener('focusin', focus);
+      window.removeEventListener('hashchange', stop);
+      window.removeEventListener('beforeprint', stop);
       preference.removeEventListener('change', updateMotion);
       document.removeEventListener('visibilitychange', updateMotion);
     };
