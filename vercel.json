@@ -17,13 +17,28 @@
     { "source": "/resume", "destination": "/resume/", "permanent": true },
     { "source": "/resume/index.html", "destination": "/resume/", "permanent": true },
     {
+      "source": "/projects/design-token-system",
+      "destination": "/projects/wallet-payment-journeys",
+      "permanent": true
+    },
+    {
       "source": "/projects/design-token-system/",
-      "destination": "/projects/design-token-system",
+      "destination": "/projects/wallet-payment-journeys",
       "permanent": true
     },
     {
       "source": "/projects/design-token-system/index.html",
-      "destination": "/projects/design-token-system",
+      "destination": "/projects/wallet-payment-journeys",
+      "permanent": true
+    },
+    {
+      "source": "/projects/wallet-payment-journeys/",
+      "destination": "/projects/wallet-payment-journeys",
+      "permanent": true
+    },
+    {
+      "source": "/projects/wallet-payment-journeys/index.html",
+      "destination": "/projects/wallet-payment-journeys",
       "permanent": true
     },
     {

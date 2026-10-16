@@ -30,7 +30,9 @@ function PhaseIcon({ phase }: { phase: WorkbenchPhase }): JSX.Element {
 
 export function EngineeringWorkbench(): JSX.Element {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [pointerMotion, setPointerMotion] = useState(false);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
+  const signal = useRef<HTMLSpanElement>(null);
 
   function handleTabKey(event: KeyboardEvent<HTMLButtonElement>, index: number): void {
     let nextIndex: number;
@@ -51,12 +53,18 @@ export function EngineeringWorkbench(): JSX.Element {
         return;
     }
     event.preventDefault();
+    setPointerMotion(false);
     setActiveIndex(nextIndex);
     tabs.current[nextIndex]?.focus();
   }
 
   return (
-    <section className="workbench" aria-labelledby="workbench-title">
+    <section
+      className="workbench"
+      aria-labelledby="workbench-title"
+      data-motion={pointerMotion ? 'pointer' : 'instant'}
+      onKeyDownCapture={() => setPointerMotion(false)}
+    >
       <div className="workbench-heading">
         <h3 id="workbench-title">{workbench.title}</h3>
         <span className="workbench-mark" aria-hidden="true">
@@ -65,7 +73,11 @@ export function EngineeringWorkbench(): JSX.Element {
       </div>
       <div className="workbench-tabs" role="tablist" aria-label={workbench.navigationLabel}>
         <span className="workbench-connection" aria-hidden="true">
-          <span className="workbench-signal" />
+          <span
+            className="workbench-signal"
+            ref={signal}
+            style={{ transform: 'scaleX(' + activeIndex / (workbench.steps.length - 1) + ')' }}
+          />
         </span>
         {workbench.steps.map((step, index) => (
           <button
@@ -79,7 +91,14 @@ export function EngineeringWorkbench(): JSX.Element {
             ref={(element) => {
               tabs.current[index] = element;
             }}
-            onClick={() => setActiveIndex(index)}
+            onClick={(event) => {
+              // Establish the pointer transition before changing its target.
+              if (event.detail > 0 && signal.current)
+                void getComputedStyle(signal.current).transform;
+              setPointerMotion(event.detail > 0);
+              setActiveIndex(index);
+            }}
+            onPointerDown={() => setPointerMotion(true)}
             onKeyDown={(event) => handleTabKey(event, index)}
             key={step.id}
           >

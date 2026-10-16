@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import { caseStudies } from '../data/caseStudies';
 import { getCaseStudyMetadata, notFoundMetadata } from '../data/metadata';
 import { useMetadata } from '../hooks/useMetadata';
@@ -7,9 +7,14 @@ import { NotFound } from './NotFound';
 import { usePageMotion } from '../hooks/usePageMotion';
 export function CaseStudy(): JSX.Element {
   const { slug } = useParams();
+  const { search, hash } = useLocation();
   const motion = usePageMotion<HTMLElement>(slug);
   const study = caseStudies.find((item) => item.slug === slug);
   useMetadata(study ? getCaseStudyMetadata(study) : notFoundMetadata);
+  if (slug === 'design-token-system')
+    return (
+      <Navigate to={{ pathname: '/projects/wallet-payment-journeys', search, hash }} replace />
+    );
   if (!study) return <NotFound />;
   return (
     <article className="container case-study" ref={motion}>

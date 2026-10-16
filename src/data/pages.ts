@@ -10,7 +10,7 @@ export const aboutPage = {
     ', a software engineer with 6+ years across freelance and product development, transitioning into agentic AI engineering.',
   sections: [
     { title: 'Software engineering foundations', paragraph: profile.about[0] },
-    { title: 'Planning and implementation', paragraph: profile.about[1] },
+    { title: 'Planning, implementation and delivery', paragraph: profile.about[1] },
     { title: 'Frontend, APIs and performance', paragraph: profile.about[2] },
     { title: 'My transition into agentic AI engineering', paragraph: profile.about[3] },
   ],

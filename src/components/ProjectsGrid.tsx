@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { projects } from '../data/projects';
 import { ui } from '../data/ui';
 import { ProjectCard } from './ProjectCard';
@@ -5,6 +6,7 @@ import { useDiagramMotion } from '../hooks/useDiagramMotion';
 
 export function ProjectsGrid(): JSX.Element {
   const grid = useDiagramMotion();
+  const [pointerMotion, setPointerMotion] = useState(false);
   const featured = projects.filter((project) => project.caseStudySlug);
   const additional = projects.filter((project) => !project.caseStudySlug);
   return (
@@ -20,8 +22,12 @@ export function ProjectsGrid(): JSX.Element {
           ))}
         </div>
         <p className="work-scope-note">{ui.workScopeNote}</p>
-        <details className="additional-work">
-          <summary>
+        <details
+          className="additional-work"
+          data-motion={pointerMotion ? 'pointer' : 'instant'}
+          onKeyDownCapture={() => setPointerMotion(false)}
+        >
+          <summary onClick={(event) => setPointerMotion(event.detail > 0)}>
             <span>
               <span className="additional-work-title">{ui.additionalWorkTitle}</span>
               <span className="additional-work-description">

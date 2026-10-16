@@ -2,44 +2,36 @@ import type { CaseStudy } from '../types';
 
 export const caseStudies: CaseStudy[] = [
   {
-    slug: 'design-token-system',
-    title: 'Shared tokens for consistent light and dark themes.',
-    category: 'Design systems',
+    slug: 'wallet-payment-journeys',
+    title: 'Integrating payment APIs across web and embedded views.',
+    category: 'API integration',
     summary:
-      'Turning repeated styling decisions into reusable tokens, theme-aware components, and a consistent migration path.',
-    role: 'Frontend implementation, styling migration, and audit tooling',
+      'Deposit, withdrawal, linked-wallet, and transaction interfaces with explicit request states, payment redirects, and mobile WebView navigation.',
+    role: 'Frontend API integration, transaction states, and payment navigation',
     outcome:
-      'A shared color vocabulary, theme-aware components, and documented conventions for continued migration.',
-    skills: [
-      'CSS custom properties',
-      'Tailwind CSS',
-      'Sass',
-      'Vue',
-      'TypeScript',
-      'Pinia',
-      'Node.js tooling',
-    ],
+      'Payment journeys connected to backend services, with loading and error feedback and navigation handling across browser and embedded views.',
+    skills: ['Vue', 'TypeScript', 'REST APIs', 'Axios', 'State management', 'WebViews'],
     sections: [
       {
         id: 'context',
         title: 'Context',
         paragraphs: [
-          'I worked across frontend applications with different histories and styling approaches. The newer interface already needed light and dark experiences, while an older application still carried substantial legacy styling. My role covered theme behavior, shared styling foundations, reusable components, and the conventions used to maintain them.',
+          'I developed payment-related frontend journeys across web applications, embedded mobile browsers, and a retail interface. My work connected deposit, withdrawal, transaction, and linked-wallet views to existing backend APIs. It included the interface behavior around requests, payment redirects, and navigation between the application and embedded checkout.',
         ],
       },
       {
         id: 'problem',
         title: 'Problem',
         paragraphs: [
-          'Color decisions and theme-specific behavior were spread across components. Updating an interface meant dealing with repeated styles, hardcoded colors, and assets that needed different treatments in each theme. A shared system needed to support the existing product while giving future changes a consistent vocabulary.',
+          'Payment journeys involve more than submitting a request. The interface needs to show loading, errors, and in-progress transactions while handling redirects and return navigation. Embedded mobile browsers also have navigation constraints that differ from a normal browser tab, so the same journey needs appropriate behavior in each environment.',
         ],
       },
       {
         id: 'approach',
         title: 'Approach',
         paragraphs: [
-          'I introduced role-based CSS custom properties and connected them to Tailwind utilities. Theme state and preferences became shared concerns, and legacy styling was progressively moved toward token-driven classes. I also implemented reusable components and composables that select images according to the active theme.',
-          'The migration included color-audit tooling and written conventions. I used whole-codebase checks around structural changes to find affected call sites and guide follow-up edits. The audit scripts helped inspect color consistency, while the shared rules made the intended patterns easier for contributors and coding agents to follow.',
+          'I integrated REST APIs into deposit, withdrawal, linked-wallet, and transaction interfaces using the existing frontend service and state-management layers. Loading and error states made request progress visible, while transaction feedback covered journeys that were still in progress. The implementation connected the interface to the existing payment services.',
+          'I also adapted redirect and navigation behavior for mobile WebViews and embedded payment checkout. This included the way wallet journeys move between views and return to the surrounding application. These changes treated request feedback, embedded content, and navigation as connected parts of the frontend integration.',
         ],
       },
       {
@@ -48,19 +40,19 @@ export const caseStudies: CaseStudy[] = [
         paragraphs: [],
         points: [
           {
-            title: 'Name colors by their role',
+            title: 'Represent request and transaction states explicitly',
             description:
-              'Role-based CSS properties let components refer to surfaces, text, and accents across themes. This keeps palette choices in a shared layer; token names and usage still need consistent conventions.',
+              'Loading, errors, and in-progress transactions need distinct interface states. Request feedback and transaction feedback describe different stages of a payment journey and need to stay aligned with the API response.',
           },
           {
-            title: 'Migrate the existing interface incrementally',
+            title: 'Include embedded navigation in the integration',
             description:
-              'Moving legacy styles toward token-driven utilities provides a path through an existing application. During the transition, audit tooling helps find hardcoded colors and inconsistencies between styling approaches.',
+              'Payment redirects, return navigation, and embedded checkout belong to the same journey. Mobile WebView behavior needs attention alongside the standard browser flow.',
           },
           {
-            title: 'Treat theme state and assets as shared concerns',
+            title: 'Connect through existing service and state layers',
             description:
-              'Shared state and theme-aware composables give components a consistent way to select images and styles. The shared layer also becomes a maintenance responsibility when themes or assets change.',
+              'Frontend services handle API communication, while interface state reflects the request and transaction lifecycle. This keeps the integration responsibilities explicit as wallet features change.',
           },
         ],
       },
@@ -68,14 +60,14 @@ export const caseStudies: CaseStudy[] = [
         id: 'validation',
         title: 'Validation and maintainability',
         paragraphs: [
-          'Color-audit tooling and whole-codebase checks supported the styling changes and helped locate affected call sites. Written conventions documented the intended token and component patterns so subsequent changes could follow the same foundation.',
+          'I refined loading and error states alongside redirect and navigation behavior. The work covered browser and mobile WebView journeys, including how the interface presents an in-progress transaction and returns from payment-related navigation. Maintaining these flows requires keeping interface feedback aligned with the surrounding application and service behavior.',
         ],
       },
       {
         id: 'result',
         title: 'Result',
         paragraphs: [
-          'The work produced a light/dark foundation with reusable tokens, shared theme state, and theme-aware asset handling. It also left a practical migration path: component changes could use the same color vocabulary instead of repeating independent styling decisions. Audit tooling and documented conventions supported continued maintenance of that foundation.',
+          'The resulting interfaces connect deposit, withdrawal, linked-wallet, and transaction journeys to backend services. They provide request-state feedback and handle payment-related navigation across browser and embedded views. This work demonstrates frontend integration across API communication, application state, and the environments where a payment journey runs.',
         ],
       },
     ],

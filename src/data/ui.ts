@@ -44,7 +44,7 @@ export const ui = {
   projectStackLabel: 'Technology stack',
   skillsTitle: 'Engineering skills',
   skillsDescription:
-    'Full-stack knowledge, application planning, API integration, and validation, alongside performance, SEO, and agentic AI workflows.',
+    'Full-stack knowledge, application planning, API integration, Git and CI/CD, alongside performance, SEO, and agentic AI workflows.',
   aboutTitle: 'The engineer behind the work',
   timelineTitle: 'Career and direction',
   timelineIntroduction:
@@ -85,7 +85,7 @@ export const ui = {
   resumeExperience: 'Work Experience',
   resumeEducation: 'Education',
   resumeProjects: 'Projects',
-  resumeAi: 'Agentic AI Workflows and Automation',
+  resumeAi: 'Agentic AI Engineering Practice',
   resumeAdditionalExperience: 'Additional Work Experience',
   resumeAchievements: 'Awards and Certifications',
   resumePage: 'Page',
@@ -127,8 +127,8 @@ export const ui = {
     },
     platform: { label: 'Connected product journeys', nodes: ['Sports', 'Search', 'Account'] },
     wallet: {
-      label: 'Clear states through a payment flow',
-      nodes: ['Deposit', 'Pending', 'Complete'],
+      label: 'API requests, transaction states and payment navigation',
+      nodes: ['Request', 'Status', 'Redirect'],
     },
     tracking: {
       label: 'Attribution from browser to backend',

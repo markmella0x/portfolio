@@ -71,6 +71,12 @@ export function ResumeDocument(): JSX.Element {
             <h2 id="resume-summary">{ui.resumeSummary}</h2>
             <p>{resume.summary}</p>
           </section>
+          <section className="resume-section" aria-labelledby="resume-experience">
+            <h2 id="resume-experience">{ui.resumeExperience}</h2>
+            {resume.experience.map((entry) => (
+              <ExperienceEntry entry={entry} key={entry.role + entry.organization} />
+            ))}
+          </section>
           <section className="resume-section" aria-labelledby="resume-skills">
             <h2 id="resume-skills">{ui.resumeSkills}</h2>
             <dl className="resume-skills">
@@ -81,20 +87,6 @@ export function ResumeDocument(): JSX.Element {
                 </div>
               ))}
             </dl>
-          </section>
-          <section className="resume-section" aria-labelledby="resume-experience">
-            <h2 id="resume-experience">{ui.resumeExperience}</h2>
-            {resume.experience.map((entry) => (
-              <ExperienceEntry entry={entry} key={entry.role + entry.organization} />
-            ))}
-          </section>
-          <section className="resume-section" aria-labelledby="resume-education">
-            <h2 id="resume-education">{ui.resumeEducation}</h2>
-            <div className="resume-entry-heading">
-              <h3>{resume.education.degree}</h3>
-              <span>{resume.education.period}</span>
-            </div>
-            <p>{resume.education.institution}</p>
           </section>
         </div>
         <PageFooter page={1} />
@@ -125,6 +117,14 @@ export function ResumeDocument(): JSX.Element {
             {resume.additionalExperience.map((entry) => (
               <ExperienceEntry entry={entry} key={entry.role} />
             ))}
+          </section>
+          <section className="resume-section" aria-labelledby="resume-education">
+            <h2 id="resume-education">{ui.resumeEducation}</h2>
+            <div className="resume-entry-heading">
+              <h3>{resume.education.degree}</h3>
+              <span>{resume.education.period}</span>
+            </div>
+            <p>{resume.education.institution}</p>
           </section>
           <section className="resume-section" aria-labelledby="resume-achievements">
             <h2 id="resume-achievements">{ui.resumeAchievements}</h2>

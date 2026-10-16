@@ -8,9 +8,6 @@ async function mountApplication(root: HTMLElement): Promise<void> {
   const initialCaseStudy = window.location.pathname.startsWith('/projects/')
     ? (await import('./pages/CaseStudy')).CaseStudy
     : undefined;
-  const initialResume = /^\/resume\/?$/.test(window.location.pathname)
-    ? (await import('./pages/Resume')).Resume
-    : undefined;
   const initialAbout = /^\/about\/?$/.test(window.location.pathname)
     ? (await import('./pages/About')).AboutPage
     : undefined;
@@ -21,7 +18,6 @@ async function mountApplication(root: HTMLElement): Promise<void> {
     <StrictMode>
       <App
         initialCaseStudy={initialCaseStudy}
-        initialResume={initialResume}
         initialAbout={initialAbout}
         initialContact={initialContact}
       />

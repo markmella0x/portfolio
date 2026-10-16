@@ -23,9 +23,9 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    title: 'API integration, performance and SEO',
+    title: 'APIs, performance and delivery',
     description:
-      'Connecting product interfaces to REST APIs and real-time services, with thoughtful caching, efficient data handling, and SEO.',
+      'REST APIs, real-time services, caching and SEO, supported by Git collaboration, CI/CD build checks, and deployment validation.',
     skills: [
       { name: 'REST API integration & Axios' },
       { name: 'Authentication & session handling' },
@@ -40,7 +40,10 @@ export const skillGroups: SkillGroup[] = [
       { name: 'Vite & build configuration' },
       { name: 'Lighthouse & loading strategies' },
       { name: 'Code splitting & deferred hydration' },
-      { name: 'Type checks, browser QA & Git' },
+      { name: 'Type checks & browser QA' },
+      { name: 'Git, GitHub & pull requests' },
+      { name: 'CI/CD & automated build checks' },
+      { name: 'Vercel & deployment validation' },
     ],
   },
   {

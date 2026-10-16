@@ -6,7 +6,7 @@ export function StartupIntro(): JSX.Element | null {
   const [visible, setVisible] = useState(
     () =>
       typeof document === 'undefined' ||
-      (document.documentElement.dataset.intro === 'playing' &&
+      (['playing', 'leaving'].includes(document.documentElement.dataset.intro ?? '') &&
         !matchMedia('(prefers-reduced-motion: reduce)').matches),
   );
   const overlay = useRef<HTMLDivElement>(null);
@@ -40,7 +40,7 @@ export function StartupIntro(): JSX.Element | null {
     }
     const preference = matchMedia('(prefers-reduced-motion: reduce)');
     const started = Number(document.documentElement.dataset.introStarted);
-    const timer = window.setTimeout(finish, Math.max(0, 1800 - (performance.now() - started)));
+    const timer = window.setTimeout(finish, Math.max(0, 1000 - (performance.now() - started)));
     function onKey(event: KeyboardEvent): void {
       if (event.key === 'Escape') finish();
     }
@@ -64,6 +64,10 @@ export function StartupIntro(): JSX.Element | null {
       role="dialog"
       aria-modal="true"
       aria-label={intro.label}
+      onAnimationStart={(event) => {
+        if (event.animationName === 'intro-dismiss')
+          document.documentElement.dataset.intro = 'leaving';
+      }}
     >
       <div className="startup-intro-content">
         <p className="startup-intro-role">{profile.title}</p>

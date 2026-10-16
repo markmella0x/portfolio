@@ -34,11 +34,11 @@ export const workbench: WorkbenchContent = {
       label: 'Verify',
       title: 'Validate against the required result.',
       description:
-        'Check the complete user journey, including responsive behavior, performance, and edge cases, before calling the feature complete.',
+        'Review changes in Git, validate the user journey across browsers, and check CI/CD build and deployment results against the acceptance criteria.',
       practices: [
-        'Review code, types, and builds',
+        'Use branches, commits, and pull requests',
         'Check browser and mobile behavior',
-        'Confirm the acceptance criteria',
+        'Validate CI/CD builds and deployments',
       ],
     },
   ],

@@ -34,20 +34,20 @@ export const projects: Project[] = [
     caseStudySlug: 'frontend-performance',
   },
   {
-    slug: 'design-token-system',
-    title: 'Shared design tokens & themes',
-    category: 'Design systems',
+    slug: 'wallet-payment-journeys',
+    title: 'API integration & payment workflows',
+    category: 'API integration',
     description:
-      'A shared light and dark theme foundation with semantic color tokens, theme-aware assets, and an incremental path away from legacy styling.',
-    skills: ['CSS tokens', 'Tailwind CSS', 'Vue', 'TypeScript'],
+      'REST API integrations for deposits, withdrawals, linked wallets, and transactions, with request-state handling and payment navigation across web and mobile WebViews.',
+    skills: ['Vue', 'TypeScript', 'REST APIs', 'Axios', 'State management', 'WebViews'],
     contributions: [
-      'Introduced role-based color tokens, shared theme state, and theme-aware components.',
-      'Migrated legacy styles incrementally, supported by color audits and written conventions.',
+      'Integrated deposit, withdrawal, linked-wallet, and transaction APIs with loading, error, and in-progress states.',
+      'Adapted payment redirects and navigation for mobile WebViews and embedded checkout flows.',
     ],
     result:
-      'Components use a shared color vocabulary across themes, with audit tooling and conventions for continued migration.',
-    visual: 'theme',
-    caseStudySlug: 'design-token-system',
+      'Payment interfaces connect to backend services with explicit request states, transaction feedback, and navigation handling across browser and embedded views.',
+    visual: 'wallet',
+    caseStudySlug: 'wallet-payment-journeys',
   },
   {
     slug: 'product-storefront',
@@ -150,21 +150,6 @@ export const projects: Project[] = [
     ],
     result: 'Connected sports, search, and account views with browser compatibility fixes.',
     visual: 'platform',
-  },
-  {
-    slug: 'wallet-payment-journeys',
-    title: 'Wallet & payment journeys',
-    category: 'API-driven experiences',
-    description:
-      'Deposit, withdrawal, linked-wallet, and transaction interfaces, including loading and error states, payment redirects, and mobile WebView behavior.',
-    skills: ['REST APIs', 'Axios', 'State management', 'WebViews'],
-    contributions: [
-      'REST API integrations for deposits, withdrawals, and linked wallets.',
-      'Loading and error states, redirects, and mobile WebView behavior.',
-    ],
-    result:
-      'Payment interfaces handle loading, errors, and redirects across web and mobile views.',
-    visual: 'wallet',
   },
   {
     slug: 'conversion-tracking',

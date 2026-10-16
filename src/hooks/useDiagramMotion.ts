@@ -9,7 +9,12 @@ export function useDiagramMotion(): RefObject<HTMLDivElement> {
     if (!root || !('IntersectionObserver' in window) || !('animate' in Element.prototype))
       return;
     if (preference.matches || window.location.hash) return;
-    if (document.activeElement?.matches(':focus-visible')) return;
+    const inputMethod = document.documentElement.dataset.inputMethod;
+    if (
+      inputMethod === 'keyboard' ||
+      (inputMethod !== 'pointer' && document.activeElement?.matches(':focus-visible'))
+    )
+      return;
     const easing = getComputedStyle(document.documentElement)
       .getPropertyValue('--ease-out')
       .trim();
@@ -131,7 +136,10 @@ export function useDiagramMotion(): RefObject<HTMLDivElement> {
 
     function focus(event: FocusEvent): void {
       if (!(event.target instanceof Element)) return;
-      if (event.target.matches(':focus-visible')) {
+      if (
+        event.target.matches(':focus-visible') &&
+        document.documentElement.dataset.inputMethod !== 'pointer'
+      ) {
         stop();
         return;
       }

@@ -3,10 +3,10 @@ import type { ResumeContent } from '../types';
 export const resume: ResumeContent = {
   phone: '9625881552',
   summary:
-    'Software engineer with 6+ years across freelance and product development. Plan and build web applications with full-stack knowledge, REST APIs and persistent data. Focus on frontend architecture, API integration, performance and reliability; transitioning into agentic AI engineering.',
+    'Software engineer with 6+ years across freelance and product development, focused on Vue, TypeScript, API integration and frontend reliability. Build applications from requirements through delivery with full-stack knowledge of APIs and data; transitioning into agentic AI engineering through scoped, validated AI-assisted workflows.',
   skills: [
     {
-      label: 'Programming and frontend',
+      label: 'Frontend engineering',
       skills: [
         'JavaScript',
         'TypeScript',
@@ -15,68 +15,52 @@ export const resume: ResumeContent = {
         'Next.js',
         'HTML',
         'CSS',
-        'Sass',
         'Tailwind CSS',
       ],
     },
     {
-      label: 'APIs and state management',
+      label: 'API integration and state',
       skills: [
-        'Vue Router',
-        'Pinia',
-        'Vuex',
         'REST APIs',
         'Axios',
+        'Pinia',
+        'Vuex',
         'TanStack Vue Query',
         'SignalR',
-        'Zustand',
-        'Zod',
-        'React Hook Form',
         'Mobile WebViews',
       ],
     },
     {
       label: 'Performance and SEO',
       skills: [
+        'Lighthouse',
         'Caching',
         'IndexedDB',
-        'Data fetching',
-        'Image optimization',
         'Lazy loading',
         'Code splitting',
-        'Hydration',
-        'Lighthouse',
         'Search engine optimization (SEO)',
       ],
     },
     {
-      label: 'Agentic AI workflows',
+      label: 'AI-assisted engineering',
       skills: [
-        'Cursor',
-        'Claude Code',
         'Codex',
         'ChatGPT',
+        'Cursor',
+        'Claude Code',
         'AI-assisted research',
-        'Structured prompts',
         'Task decomposition',
-        'Context and constraints',
         'Output validation',
-        'Automation knowledge',
       ],
     },
     {
-      label: 'Backend, data and development tools',
+      label: 'Version control and delivery',
       skills: [
-        'Node.js',
-        'PHP',
-        'Laravel',
-        'Firebase',
-        'Firestore',
-        'Chart.js',
+        'Git / GitHub',
+        'Pull requests',
+        'CI/CD (continuous integration and delivery)',
         'Vite',
-        'Git',
-        'Figma-to-code',
-        'Agile / Scrum',
+        'Vercel',
       ],
     },
   ],
@@ -86,11 +70,12 @@ export const resume: ResumeContent = {
       organization: 'DigiPlus Interactive Corp',
       period: 'May 2023 - Present',
       bullets: [
-        'Integrate REST APIs and real-time services for ArenaPlus sportsbook features, including sports data, accounts, deposits, withdrawals, and customer support.',
-        'Develop and maintain sportsbook and SEO-focused web applications using Vue 3, TypeScript, Vite, and Tailwind CSS.',
-        'Build shared layouts, reusable components and design tokens for responsive light and dark interfaces.',
-        'Optimize startup loading through caching, image and font delivery, lazy loading, and code splitting.',
-        'Support Vue 2-to-Vue 3 migrations and collaborate with product managers, designers, and backend engineers.',
+        'Integrate sports data, account and customer-support REST APIs and real-time services for ArenaPlus, connecting web and mobile interfaces to backend data.',
+        'Build deposit, withdrawal, linked-wallet and transaction-history interfaces with loading, pending and error states so users can follow payment progress.',
+        'Scaffold Vue 3 and TypeScript applications with authenticated routing, shared layouts, stores and services, providing a reusable foundation for new features.',
+        'Keep noncritical SDKs and below-the-fold content off the initial render through deferred loading, code splitting and image/font delivery changes.',
+        'Refine persistent caching, stale-request handling and session cleanup to prevent outdated responses and retained resources from carrying into later journeys.',
+        'Contribute to Vue 2-to-Vue 3 migrations and shared responsive components, keeping layouts and theme behavior consistent across product features.',
       ],
     },
     {
@@ -98,11 +83,11 @@ export const resume: ResumeContent = {
       organization: 'Solid Leisure Solutions',
       period: 'May 2022 - May 2023',
       bullets: [
-        'Maintained and enhanced BingoPlus web interfaces for a digital bingo platform.',
-        'Translated Figma designs into responsive user interfaces.',
-        'Integrated REST APIs to connect interfaces with backend services.',
-        'Integrated customer-support chat into web applications.',
-        'Optimized frontend performance to improve application responsiveness.',
+        'Delivered UI updates and fixes for the BingoPlus digital bingo platform.',
+        'Built reusable components from Figma designs, adapting layouts to desktop and mobile.',
+        'Integrated REST APIs to connect frontend features with backend data and service responses.',
+        'Embedded customer-support chat so users could access assistance within the application.',
+        'Refined frontend performance to keep application interactions responsive.',
       ],
     },
   ],
@@ -113,36 +98,36 @@ export const resume: ResumeContent = {
   },
   projects: [
     {
-      title: 'Application Foundations, API Integration and Reliability',
+      title: 'Frontend Architecture and Payment API Integration',
       description:
-        'Scaffolded authenticated routing, layouts, stores and services; integrated account and wallet APIs. Built shared themes, deferred SDK loading, and refined caching, stale-request handling and session cleanup.',
+        'Built authenticated routing, layouts, stores and services. Integrated four wallet journeys: deposits, withdrawals, linked accounts and transaction history, with request-state feedback and embedded navigation.',
       skills: ['Vue 3', 'TypeScript', 'REST APIs', 'Pinia', 'Vite'],
     },
     {
       title: 'Product Storefront and Inventory Management',
       description:
-        'Contributed image loading, description fallbacks and version-aware caching that retains data on refresh failure. Added subcategory management, Firestore access rules, publication controls and inventory cache refresh.',
+        'Preserved loaded storefront data when refreshes fail through version-aware caching. Added subcategory controls, Firestore access rules and inventory cache refresh so updates reach the storefront.',
       skills: ['React', 'Next.js', 'TypeScript', 'Firebase', 'IndexedDB'],
     },
     {
       title: 'Catalog Editing Workspace',
       description:
-        'Contributed multi-catalog management and saved design settings. Persisted item ordering in Firestore with optimistic updates and rollback when writes fail.',
-      skills: ['React', 'Next.js', 'TypeScript', 'Zustand', 'Zod', 'Firestore'],
+        'Saved catalog settings and item order in Firestore so edits survive reloads. Added optimistic updates with rollback on failed writes to keep the interface aligned with saved data.',
+      skills: ['React', 'Next.js', 'TypeScript', 'Firestore'],
     },
     {
       title: 'Campaign Forms, Event Draws and Reporting',
       description:
-        'Adjusted receipt upload and participation states; updated draw participant loading and animation. Added duplicate receipt review, date filters and reporting views.',
-      skills: ['React', 'Next.js', 'Vue 3', 'TypeScript', 'Firebase', 'Chart.js'],
+        'Refined receipt-upload, participation and draw-loading states. Added duplicate-receipt review, date filters and reporting so operators can inspect campaign submissions.',
+      skills: ['React', 'Vue 3', 'TypeScript', 'Firebase'],
     },
   ],
   aiIntroduction:
-    'My foundations began with self-study in college in 2018. I started learning AI in early March 2025 and am now transitioning into agentic AI engineering.',
+    'AI study began in March 2025. Apply coding agents to scoped research, debugging and refactoring, with explicit constraints and human review.',
   aiPractices: [
-    'Use Codex and ChatGPT for research, and Cursor and Claude Code for code audits, debugging, and incremental refactoring.',
-    'Define scope, context, constraints and acceptance criteria; break AI-assisted changes into reviewable phases.',
-    'Review generated changes and affected call sites; validate behavior through code review, type checks, builds and browser inspection.',
+    'Use Codex and ChatGPT for research, and Cursor and Claude Code to audit code, debug defects and refactor in small, reviewable changes.',
+    'Define scope, context, constraints and acceptance criteria so agent output can be checked against a specific result.',
+    'Review Git changes and affected call sites; validate types, builds and browser behavior, and check CI/CD results before release.',
   ],
   additionalExperience: [
     {
@@ -150,7 +135,7 @@ export const resume: ResumeContent = {
       organization: 'Public Safety Savings and Loan Association, Inc. (PSSLAI)',
       period: 'March - April 2022',
       bullets: [
-        'Built employee risk-calculation interfaces for a risk management application using React, Node.js, and AWS.',
+        'Built employee risk-calculation interfaces using React, Node.js and AWS, giving staff a web interface for risk assessment.',
       ],
     },
     {
@@ -158,21 +143,12 @@ export const resume: ResumeContent = {
       organization: '',
       period: '2020 - 2022',
       bullets: [
-        'Translated Figma designs into responsive web and mobile layouts, and built reusable UI components.',
-      ],
-    },
-    {
-      role: 'Freelance Computer Technician',
-      organization: '',
-      period: '2020 - 2022',
-      bullets: [
-        'Installed and configured hardware and software; diagnosed and repaired desktop and laptop issues.',
+        'Delivered responsive web and mobile layouts from Figma designs, with reusable components for consistent page structure.',
       ],
     },
   ],
   achievements: [
     'Best in Thesis - AWIT, an interpreted Turing-complete scripting language written in C with bytecode generation and garbage collection.',
     "Dean's Lister, 2021-2022.",
-    'Google Tech Challenge certificate, September 28, 2019.',
   ],
 };

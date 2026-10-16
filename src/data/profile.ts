@@ -37,15 +37,15 @@ export const profile: Profile = {
         'I use Codex and ChatGPT for research, and Cursor and Claude Code for scoped audits, debugging, and refactoring. Structured prompts, explicit constraints, and human review keep the work focused and verifiable.',
     },
     {
-      title: 'Quality and maintainability',
+      title: 'Quality, Git and CI/CD',
       description:
-        'I review code, check types and builds, and validate user journeys across browsers and screen sizes. Reusable components, predictable state, error handling, and session cleanup support ongoing maintenance.',
+        'I use Git branches and pull requests to keep changes reviewable. Type checks, builds, browser validation, and CI/CD build and deployment checks help me verify the result before release.',
     },
   ],
   focus: ['6+ years of experience', 'Full-stack development', 'Agentic AI workflows'],
   about: [
     'My software engineering foundation began with self-study while I was in college in 2018. I now bring 6+ years of experience across freelance work and product development, with the full-stack knowledge to plan and build complete web applications.',
-    'I start with the required result: user journeys, application structure, API integration, and how data is validated and saved. My work includes modular application foundations, authenticated interfaces, Firestore-backed editing, access-rule changes, and optimistic updates with rollback.',
+    'I start with the required result: user journeys, application structure, API integration, and how data is validated and saved. My work includes modular application foundations, authenticated interfaces, Firestore-backed editing, access-rule changes, and optimistic updates with rollback. Git branches, pull requests, and CI/CD checks keep changes reviewable through development and deployment.',
     'API integration is a main part of my current frontend role, connecting sports, accounts, wallets, and customer support to backend services. I also work on shared UI, embedded apps, design tokens, and themes. Caching, image delivery, loading strategies, and SEO help keep large applications usable.',
     'I’m transitioning into agentic AI engineering, building on my software engineering experience. I use Codex and ChatGPT for research, guide coding agents with clear scope and constraints, and review the result through code checks and browser validation. Product behavior and maintainability guide the decisions throughout.',
   ],
