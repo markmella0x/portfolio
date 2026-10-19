@@ -6,7 +6,7 @@ export const aboutPage = {
   title: 'About ' + profile.name,
   introduction:
     'I’m ' +
-    profile.fullName +
+    profile.name +
     ', a software engineer with 6+ years across freelance and product development, transitioning into agentic AI engineering.',
   sections: [
     { title: 'Software engineering foundations', paragraph: profile.about[0] },

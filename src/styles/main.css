@@ -1675,27 +1675,37 @@ p,
 .contact-methods {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
-  gap: 0.5rem 2rem;
+  gap: 1rem;
 }
 .contact-link {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1.3rem;
-  border-bottom: 1px solid var(--border);
-  padding-block: 1.1rem;
-  min-height: 60px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-raised);
+  min-height: 7rem;
   min-width: 0;
+}
+.contact-link span:first-child {
+  font-size: 1rem;
+  font-weight: 550;
+  line-height: 1.35;
 }
 .contact-link span:last-child {
   color: var(--text-muted);
-  font-size: 0.87rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
   overflow-wrap: anywhere;
-  text-align: right;
+  text-align: left;
 }
 @media (hover: hover) and (pointer: fine) {
   a.contact-link:hover {
     color: var(--accent);
+    border-color: var(--accent);
   }
 }
 .footer {

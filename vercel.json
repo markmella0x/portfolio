@@ -6,7 +6,12 @@
   "redirects": [
     {
       "source": "/resume/Mark-Julius-Mella-Resume.pdf",
-      "destination": "/resume/Mark-Julius-M-Resume.pdf",
+      "destination": "/resume/Mark-Julius-P-Mella-Resume.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/resume/Mark-Julius-M-Resume.pdf",
+      "destination": "/resume/Mark-Julius-P-Mella-Resume.pdf",
       "permanent": true
     },
     { "source": "/index.html", "destination": "/", "permanent": true },
@@ -64,7 +69,7 @@
   ],
   "headers": [
     {
-      "source": "/resume/Mark-Julius-M-Resume.pdf",
+      "source": "/resume/Mark-Julius-P-Mella-Resume.pdf",
       "headers": [
         {
           "key": "Link",

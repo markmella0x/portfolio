@@ -103,9 +103,12 @@ export function useTheme(): { theme: Theme; toggleTheme: (animate?: boolean) => 
       applyTheme(next);
       setTheme(next);
     }
+    // Keep sticky navigation live while mobile browser chrome and scroll position
+    // change. Snapshot overlays can briefly replay the header at a stale position.
     if (
       !animate ||
       interrupted ||
+      !matchMedia('(min-width: 768px) and (hover: hover) and (pointer: fine)').matches ||
       matchMedia('(prefers-reduced-motion: reduce)').matches ||
       document.hidden ||
       typeof document.startViewTransition !== 'function'

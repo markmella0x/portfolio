@@ -1,9 +1,8 @@
 import type { ResumeContent } from '../types';
 
 export const resume: ResumeContent = {
-  phone: '9625881552',
   summary:
-    'Software engineer with 6+ years across freelance and product development, focused on Vue, TypeScript, API integration and frontend reliability. Build applications from requirements through delivery with full-stack knowledge of APIs and data; transitioning into agentic AI engineering through scoped, validated AI-assisted workflows.',
+    'Software engineer with 6+ years across freelance and product development, building responsive applications with Vue, React, Next.js, TypeScript, and JavaScript. Experienced in reusable components, state management, REST APIs, real-time integrations, and connecting interfaces with backend services and persistent data. Improve performance and SEO through caching, code splitting, lazy loading, and image and font delivery. Use Git, code review, and CI/CD for maintainable delivery while transitioning into agentic AI engineering through scoped AI-assisted workflows with human review and validation.',
   skills: [
     {
       label: 'Frontend engineering',

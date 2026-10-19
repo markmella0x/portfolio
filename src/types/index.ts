@@ -103,7 +103,6 @@ export interface ResumeProject {
   skills: string[];
 }
 export interface ResumeContent {
-  phone: string;
   summary: string;
   skills: ResumeSkillGroup[];
   experience: ResumeExperience[];

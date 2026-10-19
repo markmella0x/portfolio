@@ -9,6 +9,8 @@
     "build:public": "node --import tsx scripts/build-public.ts",
     "build:vercel": "node --import tsx scripts/build-public.ts --vercel",
     "preview": "vite preview --host 127.0.0.1 --port 4173 --strictPort",
+    "check": "npm run format:check && npm run lint && npm run test:seo && npm run build && npm run seo:check",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint . --max-warnings 0",
     "seo:check": "node --import tsx scripts/check-seo.ts",
     "test:seo": "node --import tsx --test scripts/seo.test.ts",

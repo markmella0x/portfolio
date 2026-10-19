@@ -3,13 +3,13 @@ import type { PageMetadata, Profile } from '../types';
 const engineerTitle = 'Software Engineer | Agentic AI Engineer';
 
 export const profile: Profile = {
-  name: 'Mark Julius M.',
-  fullName: 'Mark Julius M.',
+  name: 'Mark Julius',
+  fullName: 'Mark Julius P. Mella',
   role: engineerTitle,
   title: engineerTitle,
   headline: ['Engineering reliable software.'],
   summary:
-    'I’m Mark Julius M., a software engineer with 6+ years across freelance and product development. I build web applications, connect REST APIs and real-time services, and improve performance and reliability. My full-stack knowledge connects interfaces with persistent data. I’m now transitioning into agentic AI engineering.',
+    'I’m Mark Julius, a software engineer with 6+ years across freelance and product development. I build web applications, connect REST APIs and real-time services, and improve performance and reliability. My full-stack knowledge connects interfaces with persistent data. I’m now transitioning into agentic AI engineering.',
   strengths: [
     {
       title: 'Planning and application structure',
@@ -54,12 +54,12 @@ export const profile: Profile = {
     email: 'markmella.dev@gmail.com',
     github: 'https://github.com/mark-dev0x',
     linkedin: 'https://www.linkedin.com/in/markjulius0x/',
-    resume: '/resume/Mark-Julius-M-Resume.pdf',
+    resume: '/resume/Mark-Julius-P-Mella-Resume.pdf',
   },
 };
 
 export const homeMetadata: PageMetadata = {
-  title: profile.fullName + ' | ' + profile.role,
+  title: profile.name + ' | ' + profile.role,
   description:
-    'Mark Julius M.: software engineer with 6+ years in frontend development, REST API integration and performance, transitioning into agentic AI engineering.',
+    'Mark Julius: software engineer with 6+ years in frontend development, REST API integration and performance, transitioning into agentic AI engineering.',
 };

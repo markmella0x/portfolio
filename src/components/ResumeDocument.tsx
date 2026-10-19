@@ -53,11 +53,6 @@ export function ResumeDocument(): JSX.Element {
                   </a>
                 </li>
               ) : null}
-              <li>
-                <a href={'tel:' + resume.phone}>
-                  {ui.resumePhone}: {resume.phone}
-                </a>
-              </li>
               {profile.contact.github ? (
                 <li>
                   <a href={profile.contact.github}>

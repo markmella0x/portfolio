@@ -79,7 +79,6 @@ export const ui = {
   resumePreviewLabel: 'Two-page A4 resume preview',
   resumeFormat: 'A4 · 2 pages · PDF',
   resumeBack: 'Back to portfolio',
-  resumePhone: 'Phone',
   resumeSummary: 'Professional Summary',
   resumeSkills: 'Technical Skills',
   resumeExperience: 'Work Experience',

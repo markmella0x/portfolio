@@ -1,6 +1,6 @@
-# Mark Julius M. - Portfolio
+# Mark Julius - Portfolio
 
-Personal portfolio and resume for **Mark Julius M.**, a software engineer with 6+ years across freelance and product development, transitioning into agentic AI engineering. The headline is **Software Engineer | Agentic AI Engineer**. The site presents frontend development, API integration, performance, SEO, and agentic AI workflows.
+Personal portfolio for **Mark Julius**, a software engineer with 6+ years across freelance and product development, transitioning into agentic AI engineering. The resume uses the full name **Mark Julius P. Mella**. The headline is **Software Engineer | Agentic AI Engineer**. The site presents frontend development, API integration, performance, SEO, and agentic AI workflows.
 
 Built with React 18, TypeScript, Vite, Tailwind CSS 4, and React Router 7. The build produces static HTML for the home, About, Contact, resume, three case studies, and error pages.
 
@@ -41,18 +41,29 @@ Open [http://127.0.0.1:4173/](http://127.0.0.1:4173/). On Windows PowerShell, us
 
 ## Commands
 
-| Command                | Purpose                                               |
-| ---------------------- | ----------------------------------------------------- |
-| `npm run dev`          | Start the local development server                    |
-| `npm run build`        | Check TypeScript, bundle, and prerender static pages  |
-| `npm run build:public` | Build and validate SEO for the confirmed public URL   |
-| `npm run build:vercel` | Build public production or a noindex Vercel preview   |
-| `npm run preview`      | Serve the production build with redirects and 404s    |
-| `npm run lint`         | Check ESLint rules with zero warnings allowed         |
-| `npm run seo:check`    | Validate the built pages, metadata, links and assets  |
-| `npm run test:seo`     | Test public/preview indexing and configuration guards |
-| `npm run format:check` | Check formatting                                      |
-| `npm run format`       | Apply formatting                                      |
+| Command                | Purpose                                                |
+| ---------------------- | ------------------------------------------------------ |
+| `npm run dev`          | Start the local development server                     |
+| `npm run build`        | Check TypeScript, bundle, and prerender static pages   |
+| `npm run build:public` | Build and validate SEO for the confirmed public URL    |
+| `npm run build:vercel` | Build public production or a noindex Vercel preview    |
+| `npm run preview`      | Serve the production build with redirects and 404s     |
+| `npm run check`        | Run formatting, lint, SEO tests, build, and SEO checks |
+| `npm run typecheck`    | Check strict TypeScript without generating output      |
+| `npm run lint`         | Check ESLint rules with zero warnings allowed          |
+| `npm run seo:check`    | Validate the built pages, metadata, links and assets   |
+| `npm run test:seo`     | Test public/preview indexing and configuration guards  |
+| `npm run format:check` | Check formatting                                       |
+| `npm run format`       | Apply formatting                                       |
+
+## Coding agents
+
+Codex, Claude Code, and GitHub Copilot share the project rules in
+[AGENTS.md](AGENTS.md). The setup includes reusable validation, code review, and
+resume workflows, Claude commands, Copilot instructions, and GitHub validation.
+See [AGENT_SETUP.md](AGENT_SETUP.md) for entry points, example requests, and usage.
+Agent changes stay local until reviewed; each push needs explicit approval after
+that review.
 
 ## Project structure
 
@@ -75,6 +86,10 @@ Build output, dependencies, local browser artifacts, environment files, and edit
 
 Update `src/data/profile.ts` for identity and contacts, `resume.ts` for employment and resume copy, and `projects.ts` and `caseStudies.ts` for selected work. Skills, career milestones, workflow copy, and labels have their own files in `src/data/`.
 
+Public contact uses email and professional profile links. Personal phone numbers
+are excluded from the website, source data, metadata, and downloadable resume PDF;
+share a number privately when appropriate after an initial conversation.
+
 The full biography lives at `/about/`; `/contact/` offers email enquiries for projects and recruitment. Contact links open a Gmail compose tab on desktop, or the visitor's email app on phones and tablets. Project and recruitment links include the recipient and subject, with a blank message body. The main email link includes an editable greeting. Gmail may require sign-in; the visitor writes and sends the message. Static HTML without JavaScript and résumé PDF contacts retain standard email links. Edit the draft text and page-specific copy in `src/data/pages.ts`. These pages have unique metadata and AboutPage/ContactPage structured data. Home-page previews link to them, while existing `/#about` and `/#contact` links still reach the corresponding previews. There is no message-submission service to configure.
 
 A case study must have a matching project slug and 200-400 words of body text. The build validates its length and generates its route and sitemap entry. Theme colors live in `src/styles/tokens.css`.
@@ -90,7 +105,7 @@ npx --yes --package @playwright/cli playwright-cli --session resume-export close
 npm run build
 ```
 
-The export checks that content fits two A4 pages before writing `public/resume/Mark-Julius-M-Resume.pdf`. Rebuild afterward to update the production download.
+The export checks that content fits two A4 pages before writing `public/resume/Mark-Julius-P-Mella-Resume.pdf`. Rebuild afterward to update the production download.
 
 ## Website hosting
 

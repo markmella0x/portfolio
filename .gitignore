@@ -4,6 +4,9 @@ output/
 .sites-runtime/
 .playwright-cli/
 *.local
+CLAUDE.local.md
+.claude/settings.local.json
+.claude/worktrees/
 .env*
 !.env.example
 
